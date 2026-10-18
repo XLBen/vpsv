@@ -15,6 +15,12 @@ extends SceneTree
 ##   --profile              打印各系统每帧平均 / 最大耗时
 ##   --open-chest=5        第 3 秒直接打开一个宝箱（配合 --shot-chest 截演出）
 ##   --screen=shop          配合 --shot-title：先打开某个菜单（character_select / stage_select / shop / collection / settings / dialogue）
+##   --hitbox               打开判定框调试层（游戏内按 F3 也可切换）
+##   --burst=1.0:0.05:12    从第 1.0 秒起每 0.05 秒截一帧，共 12 帧，拼成一张联系表（文件名 = --shot 加 _burst）
+## 武器实验室（检查手感用）：不刷怪，只摆一片不会动的木桩怪，并只装备指定武器
+##   --lab=whip:8,garlic:1  装备的武器与等级（替换角色初始武器）
+##   --lab-move=still       玩家移动方式：still 原地 · right 匀速向右 · circle 绕圈
+##   --lab-hp=1e9           木桩血量（设小一些可以检查死亡效果，死掉的木桩 0.5 秒后补上）
 
 var app: Node
 var secs := 120.0
@@ -40,6 +46,14 @@ var give := []
 var screen := ""
 var open_chest := 0
 var profile := false
+var hitbox := false
+var burst := []                  # [开始秒数, 间隔, 帧数]
+var _burst_imgs: Array[Image] = []
+var _burst_next := 0.0
+var lab := []
+var lab_move := "still"
+var lab_hp := 1e9
+var _slots: Array = []           # [相对玩家的位置, 敌人, 空缺计时]
 
 
 func _initialize() -> void:
@@ -76,6 +90,17 @@ func _initialize() -> void:
 			give = Array(v.split(","))
 		elif a.begins_with("--shot-chest="):
 			shot_chest = v
+		elif a == "--hitbox":
+			hitbox = true
+		elif a.begins_with("--burst="):
+			burst = Array(v.split(":")).map(func(x): return float(x))
+		elif a.begins_with("--lab="):
+			lab = Array(v.split(","))
+			god = true
+		elif a.begins_with("--lab-move="):
+			lab_move = v
+		elif a.begins_with("--lab-hp="):
+			lab_hp = float(v)
 	app = load("res://main.tscn").instantiate()
 	root.add_child(app)
 
@@ -126,6 +151,10 @@ func _process(delta: float) -> bool:
 					w = app.game.add_weapon(id)
 				if w and g.contains(":"):
 					w.set_level(int(g.get_slice(":", 1)))
+			if hitbox:
+				app.game.debug.toggle(true)
+			if not lab.is_empty():
+				_setup_lab(app.game)
 		return false
 	var game = app.game
 	if game == null:
@@ -137,8 +166,18 @@ func _process(delta: float) -> bool:
 		game.open_chest(null)
 		open_chest = 0
 
+	if not lab.is_empty():
+		_update_lab(game, delta)
+	if not burst.is_empty() and game.run.time >= burst[0] + _burst_next and _burst_imgs.size() < int(burst[2]):
+		_burst_imgs.append(root.get_texture().get_image())
+		_burst_next += burst[1]
+		if _burst_imgs.size() == int(burst[2]):
+			_save_burst(shot.get_basename() + "_burst.png")
+
 	# 随机走位
 	dir_t -= delta
+	if not lab.is_empty():
+		dir_t = 1.0
 	if dir_t <= 0.0:
 		dir_t = randf_range(0.8, 2.0)
 		for a in ["move_left", "move_right", "move_up", "move_down"]:
@@ -203,3 +242,59 @@ func _process(delta: float) -> bool:
 			_save(shot)
 		return true
 	return false
+
+
+# ------------------------------------------------------------ 武器实验室
+
+func _setup_lab(game: Node) -> void:
+	game.spawning = false
+	for w in game.weapons:
+		w.cleanup()
+	game.weapons.clear()
+	for g in lab:
+		var w = game.add_weapon(g.get_slice(":", 0))
+		if w and g.contains(":"):
+			w.set_level(int(g.get_slice(":", 1)))
+	for x in range(-150, 151, 30):
+		for y in [-70, -35, 0, 35, 70]:
+			if absi(x) < 25 and absi(y) < 25:
+				continue
+			_slots.append([Vector2(x, y), null, 0.0])
+
+
+func _update_lab(game: Node, dt: float) -> void:
+	for a in ["move_left", "move_right", "move_up", "move_down"]:
+		Input.action_release(a)
+	game.player.input_override = Vector2.ZERO
+	match lab_move:
+		"right":
+			game.player.input_override = Vector2.RIGHT
+		"circle":
+			game.player.input_override = Vector2.from_angle(game.run.time * 1.5)
+	var def: Resource = root.get_node("Registry").enemy("zombie")
+	for s in _slots:
+		if s[1] != null and s[1].alive():
+			continue
+		s[2] -= dt
+		if s[2] > 0.0 and s[1] != null:
+			continue
+		s[1] = game.enemies.spawn(def, game.player.position + s[0], {"speed": 0.0, "damage": 0.0, "xp": 0, "max_hp": lab_hp, "hp": lab_hp})
+		s[2] = 0.5
+
+
+## 把连拍的帧裁出中间区域，按 4 列拼成一张放大 2 倍的联系表。
+func _save_burst(path: String) -> void:
+	var src: Image = _burst_imgs[0]
+	var crop := Vector2i(320, 180)
+	var origin := (src.get_size() - crop) / 2
+	var cols := 4
+	var rows := int(ceil(_burst_imgs.size() / float(cols)))
+	var sheet := Image.create(crop.x * cols + cols - 1, crop.y * rows + rows - 1, false, Image.FORMAT_RGBA8)
+	sheet.fill(Color(1, 0, 1))
+	for i in _burst_imgs.size():
+		var img := _burst_imgs[i]
+		img.convert(Image.FORMAT_RGBA8)
+		sheet.blit_rect(img, Rect2i(origin, crop), Vector2i((i % cols) * (crop.x + 1), (i / cols) * (crop.y + 1)))
+	sheet.resize(sheet.get_width() * 2, sheet.get_height() * 2, Image.INTERPOLATE_NEAREST)
+	sheet.save_png(path)
+	print("saved ", path)

@@ -34,3 +34,5 @@ vfx = {
 shader = ""
 ramp = "ramp.blood"
 sfx = "sfx.weapon.whip"
+hit_fx = "vfx.hit.slash"
+hit_sfx = "sfx.hit.slash"

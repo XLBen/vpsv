@@ -9,7 +9,7 @@ func fire_one(_i: int) -> void:
 	if target == null:
 		return
 	var spd := float(param("proj_speed", 200)) * speed()
-	var p := make_proj(from, (target.pos - from).normalized() * spd)
+	var p := make_proj(from, (target.center() - from).normalized() * spd)
 	p.life = rng / spd
 	game.projectiles.add_proj(p)
 	play_sfx()

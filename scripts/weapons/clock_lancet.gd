@@ -11,6 +11,9 @@ func fire_one(_i: int) -> void:
 	p.pierce = 9999
 	p.life = 0.9
 	p.radius = 4.0 * area()
+	if p.node:
+		# 光束素材只有 16×4：沿飞行方向拉长、加粗，看起来是一道射线
+		p.node.scale = Vector2(3.0, 2.0) * maxf(0.5, area())
 	p.on_hit = func(_pp, e):
 		if not e.def.freeze_immune:
 			e.freeze = maxf(e.freeze, duration())

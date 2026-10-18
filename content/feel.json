@@ -1,0 +1,19 @@
+{
+	"_说明": "手感参数。时间单位为秒，距离单位为像素。改完重开一局即生效。",
+	"flash_white": 0.06,
+	"flash_tint": 0.05,
+	"knockback_impulse": 120.0,
+	"knockback_decay": 14.0,
+	"knockback_max": 260.0,
+	"hit_spark": true,
+	"spark_cap": 48,
+	"debris": 5,
+	"debris_cap": 300,
+	"number_life": 0.6,
+	"number_merge": 0.1,
+	"number_cap": 80,
+	"projectile_fade": 0.15,
+	"despawn_time": 0.3,
+	"hitstop": 0.0,
+	"enemy_outline": true
+}

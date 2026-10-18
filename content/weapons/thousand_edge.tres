@@ -31,3 +31,5 @@ vfx = {
 shader = ""
 ramp = "ramp.ice"
 sfx = "sfx.weapon.knife"
+hit_fx = "vfx.hit.slash"
+hit_sfx = "sfx.hit.slash"

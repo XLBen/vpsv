@@ -1,4 +1,4 @@
-// 刀光：按亮度映射到色带；随 progress 从尾部开始像素化溶解。
+// 刀光：按亮度映射到色带。前半段保持完整，后半段从起手端开始像素化溶解。
 shader_type canvas_item;
 #include "res://shaders/shared/pixel.gdshaderinc"
 
@@ -15,7 +15,7 @@ void fragment() {
 	vec2 texel = floor(UV / TEXTURE_PIXEL_SIZE);
 	float n = hash12(texel);
 	// 越靠左（起手处）越早消失
-	float cut = progress * 1.4 - (1.0 - UV.x) * 0.4;
+	float cut = (progress - 0.5) * 2.6 - (1.0 - UV.x) * 0.3;
 	if (n < cut) {
 		discard;
 	}

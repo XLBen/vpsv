@@ -81,3 +81,4 @@ vfx = {
 shader = "res://shaders/weapons/santa_water.gdshader"
 ramp = "ramp.water"
 sfx = "sfx.weapon.water"
+hit_sfx = "sfx.hit.fire"

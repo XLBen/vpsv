@@ -11,17 +11,22 @@ var _n := 0
 var _cap := 0
 
 
-func setup(sheet_id: String, ramp_id := "ramp.fire") -> void:
+## edge：是否给整批加 1px 深色描边（怪物用，见 content/feel.json 的 enemy_outline）。
+func setup(sheet_id: String, ramp_id := "ramp.fire", edge := false) -> void:
 	info = Assets.sheet(sheet_id)
 	texture = info.texture
 	multimesh = MultiMesh.new()
 	multimesh.transform_format = MultiMesh.TRANSFORM_2D
 	multimesh.use_custom_data = true
 	multimesh.mesh = _quad(info.size, info.pivot)
+	# 实例每帧都在变，引擎缓存的包围盒会过期，导致整批被错误剔除（怪物“隐形”）。
+	# 我们已经在 CPU 上按视野剔除，这里给一个足够大的固定包围盒。
+	multimesh.custom_aabb = AABB(Vector3(-1e6, -1e6, -1.0), Vector3(2e6, 2e6, 2.0))
 	var mat := ShaderMaterial.new()
 	mat.shader = SHADER
 	mat.set_shader_parameter("grid", Vector2(info.cols, info.rows))
 	mat.set_shader_parameter("dissolve_ramp", Assets.ramp(ramp_id))
+	mat.set_shader_parameter("edge", edge)
 	material = mat
 
 
@@ -44,7 +49,7 @@ func begin() -> void:
 	_n = 0
 
 
-## flags_z：闪白 0..1，冻结时 +2；flags_w：溶解 0..1，首领描边 +2。
+## flags_z：闪白（1 / 0.5）+ 冻结 ×2 + 溶解种子 ×4；flags_w：溶解 0..1 + 首领描边 ×2。
 func add(pos: Vector2, flip: bool, col: int, row: int, flags_z := 0.0, flags_w := 0.0, scale := 1.0) -> void:
 	if _n >= _cap:
 		_cap = maxi(32, _cap * 2)

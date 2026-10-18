@@ -62,6 +62,23 @@ static func apply_progress(node: CanvasItem, motion_id: String, progress: float)
 	_apply(node, node.get_meta(META_REST), tr.x[f], tr.y[f], tr.sx[f], tr.sy[f], tr.rot[f], tr.alpha[f])
 
 
+## 只取样不应用：返回第 t 秒的 {x, y, sx, sy, rot, alpha}（超出时长取最后一帧）。
+## 给每帧位置由代码决定的世界内节点用（环绕的书本、伤害数字等）。曲线缺失时返回空字典。
+static func sample(motion_id: String, t: float) -> Dictionary:
+	var data: Dictionary = Assets.motion(motion_id)
+	if data.is_empty() or not data.has("tracks"):
+		return {}
+	var tr: Dictionary = data.tracks.values()[0]
+	var n: int = tr.x.size()
+	var f := clampi(int(t * float(data.get("fps", 60))), 0, n - 1)
+	return {"x": tr.x[f], "y": tr.y[f], "sx": tr.sx[f], "sy": tr.sy[f], "rot": tr.rot[f], "alpha": tr.alpha[f]}
+
+
+## 曲线时长（秒）。
+static func length_of(motion_id: String) -> float:
+	return float(Assets.motion(motion_id).get("duration", 0)) / 1000.0
+
+
 ## 重新记录静止位置（布局变化后调用）。
 static func reset_rest(node: CanvasItem) -> void:
 	node.set_meta(META_REST, node.position)

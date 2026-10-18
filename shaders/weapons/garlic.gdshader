@@ -5,6 +5,7 @@ shader_type canvas_item;
 uniform sampler2D ramp : filter_nearest, source_color;
 uniform float progress = 0.0;        // 0..1 循环（脉动相位）
 uniform vec2 px_size = vec2(48.0);
+uniform float pulse = 0.0;           // 造成伤害的瞬间为 1，随后衰减：光环整体提亮、边缘加粗
 
 void fragment() {
 	vec2 uv = snap_uv(UV, px_size) - 0.5;
@@ -12,7 +13,7 @@ void fragment() {
 	if (r > 1.0) {
 		discard;
 	}
-	float edge = step(0.86, r);
+	float edge = step(0.86 - 0.08 * pulse, r);
 	float wave = step(0.92, fract(r * 1.5 - progress * 1.5));
 	float dither = step(0.5, hash12(floor(UV * px_size) + floor(TIME * 4.0)));
 	float body = step(0.6, r) * dither * 0.35;
@@ -20,5 +21,5 @@ void fragment() {
 	if (v <= 0.0) {
 		discard;
 	}
-	COLOR = vec4(ramp_color(ramp, 0.4 + 0.5 * v), 0.25 + 0.35 * v);
+	COLOR = vec4(ramp_color(ramp, 0.4 + 0.5 * v + 0.1 * pulse), 0.25 + 0.35 * v + 0.25 * pulse);
 }

@@ -59,3 +59,4 @@ vfx = {}
 shader = "res://shaders/weapons/pentagram.gdshader"
 ramp = "ramp.arcane"
 sfx = "sfx.weapon.pentagram"
+hit_fx = ""

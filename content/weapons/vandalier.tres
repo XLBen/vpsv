@@ -35,3 +35,4 @@ vfx = {
 shader = "res://shaders/weapons/bombard.gdshader"
 ramp = "ramp.gold"
 sfx = "sfx.weapon.bird"
+hit_sfx = "sfx.hit.fire"

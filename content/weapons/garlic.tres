@@ -75,3 +75,5 @@ vfx = {}
 shader = "res://shaders/weapons/garlic.gdshader"
 ramp = "ramp.holy"
 sfx = "sfx.weapon.garlic"
+hit_fx = ""
+hit_sfx = "sfx.hit.magic"

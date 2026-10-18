@@ -1,4 +1,5 @@
-// 闪电：从顶部劈到底部的锯齿光柱，2 像素主干 + 外圈辉光，随 progress 熄灭。
+// 闪电：从顶部劈到底部的锯齿光柱。
+//   前 30% 为强闪（粗主干 + 外圈辉光），之后是闪烁的细余辉，85% 时熄灭。
 shader_type canvas_item;
 #include "res://shaders/shared/pixel.gdshaderinc"
 
@@ -16,10 +17,12 @@ void fragment() {
 	float b = hash12(vec2(k + 1.0, seed)) - 0.5;
 	float x_off = mix(a, b, fract(cell.y / seg)) * px_size.x * 0.6;
 	float d = abs(cell.x - (px_size.x * 0.5 + x_off));
-	float core = step(d, 1.0);
-	float glow = step(d, 3.0) * 0.5;
-	float flicker = step(0.3, hash12(vec2(floor(TIME * 30.0), seed)));
-	float v = max(core, glow) * (1.0 - step(0.75, progress)) * mix(0.6, 1.0, flicker);
+	float strike = 1.0 - step(0.3, progress);
+	float after = step(0.3, progress) * (1.0 - step(0.85, progress));
+	float core = step(d, 1.0 + strike);
+	float glow = step(d, 4.0) * 0.5;
+	float flicker = step(0.35, hash12(vec2(floor(TIME * 30.0), seed)));
+	float v = strike * max(core, glow) + after * core * mix(0.25, 0.7, flicker);
 	if (v <= 0.0) {
 		discard;
 	}

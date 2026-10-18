@@ -72,3 +72,5 @@ vfx = {}
 shader = "res://shaders/weapons/lightning.gdshader"
 ramp = "ramp.lightning"
 sfx = "sfx.weapon.lightning"
+hit_fx = "vfx.hit.magic"
+hit_sfx = "sfx.hit.magic"

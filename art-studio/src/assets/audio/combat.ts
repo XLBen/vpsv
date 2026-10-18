@@ -90,6 +90,27 @@ export default [
     noise(c, o, { dur: 0.06, vol: 0.35, bp: 1200, q: 1 });
     tone(c, o, { type: 'square', freq: 220, slideTo: 110, dur: 0.05, vol: 0.08 });
   }),
+  // ---- 命中（按武器类型区分，由 WeaponDef.hit_sfx 选择；都极短，便于高频叠放）
+  sfx('sfx.hit.slash', 0.07, (c) => {
+    const o = out(c);
+    noise(c, o, { dur: 0.05, vol: 0.4, hp: 2500, sweepTo: 7000 });
+    tone(c, o, { type: 'square', freq: 1400, slideTo: 700, dur: 0.03, vol: 0.05 });
+  }),
+  sfx('sfx.hit.blunt', 0.1, (c) => {
+    const o = out(c);
+    tone(c, o, { type: 'sine', freq: 170, slideTo: 70, dur: 0.08, vol: 0.4 });
+    noise(c, o, { dur: 0.05, vol: 0.3, lp: 900 });
+  }),
+  sfx('sfx.hit.magic', 0.09, (c) => {
+    const o = out(c);
+    tone(c, o, { type: 'triangle', freq: 1800, slideTo: 2600, dur: 0.05, vol: 0.18 });
+    noise(c, o, { dur: 0.04, vol: 0.15, bp: 4000, q: 3 });
+  }),
+  sfx('sfx.hit.fire', 0.12, (c) => {
+    const o = out(c);
+    noise(c, o, { dur: 0.1, vol: 0.4, lp: 1600, sweepTo: 400 });
+    tone(c, o, { type: 'sawtooth', freq: 200, slideTo: 110, dur: 0.06, vol: 0.08 });
+  }),
   sfx('sfx.enemy.die', 0.15, (c) => {
     const o = out(c);
     tone(c, o, { type: 'square', freq: 440, slideTo: 90, dur: 0.12, vol: 0.12 });

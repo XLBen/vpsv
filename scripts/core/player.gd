@@ -4,6 +4,7 @@ extends Node2D
 const BASE_SPEED := 70.0
 const INVULN := 0.4
 const HURT_SHADER := preload("res://shaders/player.gdshader")
+const Layers := preload("res://scripts/render/layers.gd")
 
 var game: Node
 var radius := 5.0
@@ -24,7 +25,7 @@ signal died
 
 func setup(g: Node, sprite_id: String) -> void:
 	game = g
-	z_index = 5
+	Layers.put(self, Layers.PLAYER)
 	_sprite = AnimatedSprite2D.new()
 	_sprite.sprite_frames = Assets.sprite_frames(sprite_id)
 	var info = Assets.sheet(sprite_id)
@@ -66,7 +67,7 @@ func update(dt: float) -> void:
 
 
 func hurt(amount: float, _source: Object = null) -> void:
-	if invuln > 0.0 or game.paused:
+	if invuln > 0.0 or game.paused or amount <= 0.0:
 		return
 	if shield > 0.0:
 		return

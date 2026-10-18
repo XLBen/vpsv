@@ -33,3 +33,4 @@ vfx = {
 shader = ""
 ramp = "ramp.arcane"
 sfx = "sfx.weapon.axe"
+hit_sfx = "sfx.hit.blunt"

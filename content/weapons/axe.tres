@@ -75,3 +75,4 @@ vfx = {
 shader = ""
 ramp = "ramp.steel"
 sfx = "sfx.weapon.axe"
+hit_sfx = "sfx.hit.blunt"

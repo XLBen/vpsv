@@ -11,6 +11,8 @@ const PickupSystem := preload("res://scripts/combat/pickup_system.gd")
 const Vfx := preload("res://scripts/render/vfx.gd")
 const Ground := preload("res://scripts/render/ground.gd")
 const Spawner := preload("res://scripts/stage/spawner.gd")
+const Layers := preload("res://scripts/render/layers.gd")
+const DebugOverlay := preload("res://scripts/render/debug_overlay.gd")
 
 const MAX_WEAPONS := 6
 const MAX_PASSIVES := 6
@@ -33,7 +35,10 @@ var projectiles: Node2D
 var pickups: Node2D
 var vfx: Node2D
 var ground: Node2D
+var ground_fx: Node2D          # 贴地特效层（圣水、大蒜）：在怪物之下
+var debug: Node2D              # 判定框调试层（F3）
 var spawner: RefCounted
+var spawning := true           # 关掉后不再刷怪（武器实验室用）
 var cam: Camera2D
 var weapons: Array = []
 var passives := {}
@@ -48,6 +53,7 @@ var profiling := false
 var profile := {}           # 系统 → [总耗时, 最大耗时]
 var _t0 := 0
 var flash := 0.0
+var _hitstop := 0.0
 
 
 func setup(character_id: String, stage_id: String) -> void:
@@ -60,11 +66,15 @@ func setup(character_id: String, stage_id: String) -> void:
 	ground = Ground.new()
 	add_child(ground)
 	ground.setup(self, stage.tileset, stage.bounded_height)
+	ground_fx = Node2D.new()
+	Layers.put(ground_fx, Layers.GROUND_FX)
+	add_child(ground_fx)
 	pickups = PickupSystem.new()
-	pickups.z_index = -10
+	Layers.put(pickups, Layers.PICKUPS)
 	add_child(pickups)
 	pickups.setup(self)
 	enemies = EnemySystem.new()
+	Layers.put(enemies, Layers.ENEMIES)
 	add_child(enemies)
 	enemies.setup(self)
 	player = Player.new()
@@ -72,13 +82,16 @@ func setup(character_id: String, stage_id: String) -> void:
 	player.setup(self, character.sprite)
 	player.died.connect(_on_player_died)
 	projectiles = ProjectileSystem.new()
-	projectiles.z_index = 10
+	Layers.put(projectiles, Layers.PROJECTILES)
 	add_child(projectiles)
 	projectiles.setup(self)
 	vfx = Vfx.new()
-	vfx.z_index = 20
+	Layers.put(vfx, Layers.VFX)
 	add_child(vfx)
 	vfx.setup(self)
+	debug = DebugOverlay.new()
+	add_child(debug)
+	debug.setup(self)
 	cam = Camera2D.new()
 	add_child(cam)
 	cam.make_current()
@@ -120,11 +133,15 @@ func _process(delta: float) -> void:
 	cam.offset = Vector2(randf_range(-_shake, _shake), randf_range(-_shake, _shake)).round() if shake_on else Vector2.ZERO
 	if paused or finished:
 		return
+	if _hitstop > 0.0:
+		_hitstop -= delta
+		return
 	run.time += dt
 	_t0 = Time.get_ticks_usec()
 	player.update(dt)
 	cam.position = player.position.round()
-	spawner.update(dt)
+	if spawning:
+		spawner.update(dt)
 	_mark("spawner")
 	enemies.update(dt)
 	_mark("enemies")
@@ -136,6 +153,7 @@ func _process(delta: float) -> void:
 	pickups.update(dt)
 	_mark("pickups")
 	vfx.update(dt)
+	debug.update(dt)
 	ground.refresh(view_rect())
 	_mark("vfx")
 	if not cleared and run.time >= stage.duration:
@@ -185,6 +203,12 @@ func clamp_to_bounds(p: Vector2) -> Vector2:
 		var h: float = stage.bounded_height * 0.5 - 8.0
 		p.y = clampf(p.y, -h, h)
 	return p
+
+
+## 顿帧：整个战斗暂停 t 秒（content/feel.json 的 hitstop，默认关闭，原版没有顿帧）。
+func hitstop(t: float) -> void:
+	if t > 0.0:
+		_hitstop = maxf(_hitstop, t)
 
 
 func camera_shake(v: float) -> void:

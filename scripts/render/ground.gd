@@ -2,6 +2,7 @@ extends Node2D
 ## 地面：用关卡图块素材的变体，按固定种子拼出一张可无缝平铺的大贴图，跟随镜头重复绘制。
 ## 图块素材约定：第一个 clip 是底图变体，名为 deco 的 clip 是装饰变体。
 
+const Layers := preload("res://scripts/render/layers.gd")
 const TILES := 32          # 平铺贴图边长（图块数）
 const DECO_CHANCE := 0.09
 
@@ -13,7 +14,7 @@ var _band := 0.0
 func setup(g: Node, tileset_id: String, bounded_height: float) -> void:
 	game = g
 	_band = bounded_height
-	z_index = -100
+	Layers.put(self, Layers.GROUND)
 	_sprite = Sprite2D.new()
 	_sprite.texture = _build(tileset_id)
 	_sprite.centered = false

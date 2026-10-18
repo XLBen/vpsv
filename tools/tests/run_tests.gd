@@ -43,7 +43,7 @@ func _process(_d: float) -> bool:
 	save.persist = false
 	save.reset_memory()
 	seed(12345)
-	for t in ["test_xp", "test_stats", "test_powerup_price", "test_save_roundtrip", "test_parser", "test_runner", "test_cg", "test_game"]:
+	for t in ["test_xp", "test_stats", "test_powerup_price", "test_save_roundtrip", "test_parser", "test_runner", "test_cg", "test_game", "test_render", "test_strike"]:
 		print("· ", t)
 		call(t)
 	print("通过 %d，失败 %d" % [passed, failed])
@@ -227,4 +227,78 @@ func test_game() -> void:
 			drops[it.kind] = drops.get(it.kind, 0) + 1
 	check(not drops.has("vacuum") and not drops.has("rosary") and not drops.has("orologion"), "等级不足的掉落被排除：%s" % str(drops))
 	check(drops.get("coin", 0) > drops.get("coin_bag", 0) * 3, "金币权重远高于钱袋")
+	g.queue_free()
+
+
+## 渲染一致性：视野内每只活着的怪物都进入绘制批次；批次不会被引擎按过期包围盒剔除；贴地特效在怪物之下。
+func test_render() -> void:
+	var Layers: GDScript = load("res://scripts/render/layers.gd")
+	var g = Game.new()
+	root.add_child(g)
+	g.setup("lorenzo", "forest")
+	g.spawning = false
+	var def: Resource = root.get_node("Registry").enemy("zombie")
+	var bat: Resource = root.get_node("Registry").enemy("bat")
+	# 玩家走远之后再刷怪：过去这种情况整批怪物会被剔除（隐形）
+	g.player.position = Vector2(5000, -3000)
+	g.cam.position = g.player.position
+	g.cam.force_update_scroll()
+	var view: Rect2 = g.view_rect()
+	for i in 30:
+		g.enemies.spawn(def if i % 2 == 0 else bat, view.position + Vector2(randf() * view.size.x, randf() * view.size.y))
+	g.enemies.update(0.016)
+	var drawn := 0
+	for b in g.enemies.batches.values():
+		drawn += b.count()
+		check(b.multimesh.custom_aabb.size.x > 1e5, "怪物批次使用固定的大包围盒（不被错误剔除）")
+	var expect := 0
+	for e in g.enemies.list:
+		if view.grow(48.0).has_point(e.pos):
+			expect += 1
+	check(drawn == expect and expect >= 28, "视野内的怪物都被绘制：%d / %d" % [drawn, expect])
+	# 层级：圣水火池、大蒜光环在怪物之下，投射物在怪物之上
+	var sw = g.add_weapon("santa_water")
+	sw._splash(g.player.position)
+	var ga = g.add_weapon("garlic")
+	var ez: int = Layers.effective_z(g.enemies)
+	check(Layers.effective_z(g.projectiles.zones.back().node) < ez, "圣水火池画在怪物之下")
+	check(Layers.effective_z(ga._aura) < ez, "大蒜光环画在怪物之下")
+	check(Layers.effective_z(g.projectiles) > ez and Layers.effective_z(g.player) > ez, "投射物与玩家画在怪物之上")
+	# 到期的蝙蝠群：先消散再移除，不计击杀
+	var kills: int = g.run.kills
+	var e = g.enemies.spawn(bat, g.player.position + Vector2(40, 0), {"life": 0.01})
+	g.enemies.update(0.05)
+	check(not e.alive() and not e.dead, "到期的怪物进入消散动画")
+	for i in 10:
+		g.enemies.update(0.05)
+	check(e.dead and g.run.kills == kills, "消散结束后移除，且不计击杀")
+	g.queue_free()
+
+
+## 近战判定：跟随玩家、只在窗口内生效、每个敌人只命中一次。
+func test_strike() -> void:
+	var g = Game.new()
+	root.add_child(g)
+	g.setup("lorenzo", "forest")
+	g.spawning = false
+	var whip = g.weapons[0]
+	var def: Resource = root.get_node("Registry").enemy("zombie")
+	var e = g.enemies.spawn(def, g.player.position + Vector2(60, 0), {"speed": 0.0, "max_hp": 1e9, "hp": 1e9})
+	var s = whip.make_strike(Vector2(40, -8), Vector2(70, 18), Vector2.RIGHT, 0.05, 0.1)
+	g.enemies.update(0.016)
+	g.projectiles.update(0.02)
+	check(is_equal_approx(e.hp, 1e9), "生效窗口之前不造成伤害")
+	g.player.position += Vector2(100, 0)   # 玩家移开：判定跟随玩家，敌人不再在框内
+	g.enemies.update(0.016)
+	for i in 10:
+		g.projectiles.update(0.02)
+	check(is_equal_approx(e.hp, 1e9), "判定框跟随玩家移动")
+	g.player.position -= Vector2(100, 0)
+	var s2 = whip.make_strike(Vector2(40, -8), Vector2(70, 18), Vector2.RIGHT, 0.0, 0.2)
+	g.enemies.update(0.016)
+	for i in 10:
+		g.projectiles.update(0.02)
+	check(e.hp < 1e9 and is_equal_approx(1e9 - e.hp, whip.damage()), "窗口内每个敌人只命中一次")
+	g.projectiles.update(0.05)
+	check(s.dead and s2.dead and g.projectiles.strikes.is_empty(), "判定结束后被移除")
 	g.queue_free()

@@ -5,6 +5,7 @@ shader_type canvas_item;
 
 uniform sampler2D ramp : filter_nearest, source_color;
 uniform float glow = 1.0;
+uniform float dissolve = 0.0;        // 0..1：寿命末尾按像素随机消散
 
 void fragment() {
 	vec4 c = texture(TEXTURE, UV);
@@ -21,6 +22,9 @@ void fragment() {
 		if (n > 0.5) {
 			c = vec4(ramp_color(ramp, 0.6), 0.45 + 0.25 * pulse);
 		}
+	}
+	if (dissolve > 0.0 && hash12(floor(UV / TEXTURE_PIXEL_SIZE)) < dissolve) {
+		discard;
 	}
 	COLOR = c * COLOR;
 }

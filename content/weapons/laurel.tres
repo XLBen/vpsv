@@ -55,3 +55,4 @@ vfx = {}
 shader = "res://shaders/weapons/shield.gdshader"
 ramp = "ramp.nature"
 sfx = "sfx.weapon.laurel"
+hit_fx = ""

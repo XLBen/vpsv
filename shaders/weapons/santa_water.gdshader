@@ -1,4 +1,4 @@
-// 圣水区域：圆内跳动的像素火苗，寿命末尾逐格熄灭。
+// 圣水区域：圆内跳动的像素火苗。前 75% 寿命满火，最后 25% 逐格熄灭。
 shader_type canvas_item;
 #include "res://shaders/shared/pixel.gdshaderinc"
 
@@ -16,10 +16,11 @@ void fragment() {
 	// 火苗：噪声沿 y 向上滚动
 	float n = value_noise(vec2(cell.x * 0.35, cell.y * 0.35 + TIME * 6.0));
 	float flame = n * (1.0 - r * 0.7);
-	float alive = step(progress, hash12(cell) * 1.1);
+	float burn_out = clamp((progress - 0.75) / 0.25, 0.0, 1.0);
+	float alive = step(burn_out, hash12(cell) * 0.98);
 	float v = posterize(clamp(flame * 1.4, 0.0, 1.0), 4.0) * alive;
 	if (v < 0.2) {
 		discard;
 	}
-	COLOR = vec4(ramp_color(ramp, v), 0.9);
+	COLOR = vec4(ramp_color(ramp, v), 0.75);
 }

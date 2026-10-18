@@ -34,3 +34,4 @@ vfx = {
 shader = ""
 ramp = "ramp.holy"
 sfx = "sfx.weapon.cross"
+hit_sfx = "sfx.hit.blunt"

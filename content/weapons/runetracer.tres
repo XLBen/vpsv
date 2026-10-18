@@ -78,3 +78,5 @@ vfx = {
 shader = ""
 ramp = "ramp.ice"
 sfx = "sfx.weapon.rune"
+hit_fx = "vfx.hit.magic"
+hit_sfx = "sfx.hit.magic"

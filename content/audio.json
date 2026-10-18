@@ -4,6 +4,7 @@
 	"sfx.weapon.*": {"gap": 0.06, "poly": 3, "pitch_var": 0.06, "volume": 0.45},
 	"sfx.weapon.pentagram": {"volume": 0.8},
 	"sfx.enemy.hit": {"gap": 0.045, "poly": 4, "pitch_var": 0.15, "volume": 0.35},
+	"sfx.hit.*": {"gap": 0.04, "poly": 4, "pitch_var": 0.12, "volume": 0.4},
 	"sfx.enemy.die": {"gap": 0.05, "poly": 4, "pitch_var": 0.2, "volume": 0.3},
 	"sfx.enemy.boss_appear": {"volume": 0.9},
 	"sfx.enemy.reaper": {"volume": 1.0},

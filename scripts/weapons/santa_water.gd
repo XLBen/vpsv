@@ -1,6 +1,9 @@
 extends "res://scripts/weapons/weapon_base.gd"
 ## 圣水 / 圣泉：投出瓶子，落地形成持续伤害的圣火区域。
 ## 圣泉参数：grow（区域每秒扩大比例）、follow（区域向玩家移动的速度）。
+## 火池贴地（ground_fx 层，在怪物之下）；落地时有一圈溅射。
+
+const EXPLOSION := "res://shaders/weapons/explosion.gdshader"
 
 
 func fire_one(_i: int) -> void:
@@ -33,6 +36,7 @@ func _splash(at: Vector2) -> void:
 	z.grow = float(param("grow", 0.0))
 	z.follow = float(param("follow", 0.0))
 	z.node = game.vfx.quad(def.shader, Vector2.ONE * z.radius * 2.0, def.ramp)
-	z.node.z_index = -4
-	game.projectiles.add_zone(z)
+	game.projectiles.add_zone(z, game.ground_fx)
+	var ring: Node2D = game.vfx.quad(EXPLOSION, Vector2.ONE * z.radius * 2.4, def.ramp)
+	game.vfx.one_shot(ring, at, 0.3, game.ground_fx)
 	Audio.play("sfx.weapon.water_splash")

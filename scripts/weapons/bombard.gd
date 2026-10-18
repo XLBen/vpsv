@@ -12,7 +12,6 @@ func setup() -> void:
 		ids.append(vfx_id("bird2"))
 	for id in ids:
 		var s: AnimatedSprite2D = game.vfx.sprite(id)
-		s.z_index = 8
 		game.projectiles.add_child(s)
 		_birds.append(s)
 
@@ -28,10 +27,9 @@ func update(dt: float) -> void:
 
 
 func fire_one(i: int) -> void:
-	var r := float(param("radius", 70))
-	var dir := float(param("dir", 1)) * (1.0 if i % 2 == 0 or not param("pair", false) else -1.0)
-	var a := _angle * dir + randf_range(-0.6, 0.6)
-	var at: Vector2 = game.player.position + Vector2(cos(a), sin(a)) * r * randf_range(0.6, 1.0)
+	# 炸弹落在投弹那只鸟的正下方（鸟画在地面上方 30px 处），再加一点随机散布
+	var b: Node2D = _birds[i % _birds.size()]
+	var at: Vector2 = b.position + Vector2(0, 30) + Vector2.from_angle(randf() * TAU) * randf_range(0.0, 18.0)
 	var br := float(param("blast", 14)) * area()
 	hit_circle(at, br)
 	var q: Node2D = game.vfx.quad(def.shader, Vector2.ONE * br * 2.0, def.ramp)

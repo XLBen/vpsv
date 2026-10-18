@@ -62,6 +62,7 @@ interval = 0.0
 pierce = 1
 knockback = 1.0
 params = {
+"visual_scale": 1.5,
 "proj_speed": 110,
 "spread": 0.35
 }
@@ -76,3 +77,4 @@ vfx = {
 shader = ""
 ramp = "ramp.fire"
 sfx = "sfx.weapon.fire"
+hit_sfx = "sfx.hit.fire"

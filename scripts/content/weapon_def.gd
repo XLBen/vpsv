@@ -42,3 +42,9 @@ extends Resource
 @export var shader := ""                     ## 特效着色器路径
 @export var ramp := ""                       ## 色带素材 id
 @export var sfx := ""                        ## 出手音效 id
+
+@export_group("手感")
+@export var fade_out := 0.15                 ## 投射物寿命末尾的消散时长（秒），0 为瞬间消失
+@export var hit_fx := "vfx.hit.spark"        ## 命中火花素材 id，空字符串表示不显示
+@export var hit_sfx := ""                    ## 命中音效 id，空则用通用的 sfx.enemy.hit
+@export var hit_shake := 0.0                 ## 命中时的屏幕震动（像素）

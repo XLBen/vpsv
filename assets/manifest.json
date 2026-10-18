@@ -2481,6 +2481,24 @@
    "duration": 1400,
    "drive": "time"
   },
+  "motion.fx.damage_number": {
+   "type": "motion",
+   "file": "generated/motion/motion.fx.damage_number.json",
+   "duration": 600,
+   "drive": "time"
+  },
+  "motion.fx.pop_in": {
+   "type": "motion",
+   "file": "generated/motion/motion.fx.pop_in.json",
+   "duration": 180,
+   "drive": "time"
+  },
+  "motion.fx.pop_out": {
+   "type": "motion",
+   "file": "generated/motion/motion.fx.pop_out.json",
+   "duration": 160,
+   "drive": "time"
+  },
   "motion.ui.banner_drop": {
    "type": "motion",
    "file": "generated/motion/motion.ui.banner_drop.json",
@@ -3279,6 +3297,38 @@
     "sfx"
    ]
   },
+  "sfx.hit.blunt": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.hit.blunt.wav",
+   "duration": 0.1,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.hit.fire": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.hit.fire.wav",
+   "duration": 0.12,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.hit.magic": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.hit.magic.wav",
+   "duration": 0.09,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.hit.slash": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.hit.slash.wav",
+   "duration": 0.07,
+   "tags": [
+    "sfx"
+   ]
+  },
   "sfx.pickup.coin": {
    "type": "audio",
    "file": "generated/sfx/sfx.pickup.coin.wav",
@@ -3993,6 +4043,81 @@
    },
    "tags": [
     "vfx"
+   ]
+  },
+  "vfx.hit.magic": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.hit.magic.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    6
+   ],
+   "fps": 20,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": false,
+     "fps": 20
+    }
+   },
+   "tags": [
+    "vfx",
+    "hit"
+   ]
+  },
+  "vfx.hit.slash": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.hit.slash.png",
+   "size": [
+    16,
+    8
+   ],
+   "pivot": [
+    8,
+    4
+   ],
+   "fps": 20,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": false,
+     "fps": 20
+    }
+   },
+   "tags": [
+    "vfx",
+    "hit"
+   ]
+  },
+  "vfx.hit.spark": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.hit.spark.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    6
+   ],
+   "fps": 20,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": false,
+     "fps": 20
+    }
+   },
+   "tags": [
+    "vfx",
+    "hit"
    ]
   },
   "vfx.knife.blade": {

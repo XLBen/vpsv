@@ -78,3 +78,5 @@ vfx = {
 shader = ""
 ramp = "ramp.arcane"
 sfx = "sfx.weapon.bible"
+hit_fx = "vfx.hit.magic"
+hit_sfx = "sfx.hit.blunt"

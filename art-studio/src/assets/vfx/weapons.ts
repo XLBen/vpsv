@@ -3,7 +3,7 @@
 // 这样同一张图可以给普通版和进化版（不同色带）复用。
 import { Grid } from '../../runtime/grid';
 import { frameSteps, pivot, pixels, svgEl, tr } from '../../runtime/pixel';
-import type { ColorKey } from '../../runtime/palette';
+import { hex, type ColorKey } from '../../runtime/palette';
 import type { SheetSpec } from '../../runtime/spec';
 
 // 灰阶键：1 最暗 … 4 最亮（着色器把亮度映射到色带）
@@ -26,7 +26,8 @@ function still(id: string, size: [number, number], paint: (g: Grid) => void, out
   };
 }
 
-/** 刀光：一道新月形弧线从左到右扫出，随后变细消散（SVG 路径 + WAAPI 描边动画）。 */
+/** 刀光：压得很平的新月形宽弧，几乎铺满判定矩形（Godot 端按判定的长、高缩放）。
+ *  三层描边（暗 → 亮 → 核心），第 0 帧就已抽出大半、1–3 帧完整，之后变细并从起手端擦除。 */
 const slash: SheetSpec = {
   kind: 'sheet',
   id: 'vfx.whip.slash',
@@ -36,23 +37,14 @@ const slash: SheetSpec = {
   clips: { idle: { frames: 6 } },
   tags: ['vfx'],
   build(root) {
-    const outer = svgEl('path', { d: 'M 2 12 Q 32 -4 62 10', fill: 'none', stroke: '#f4ecf0', 'stroke-width': 5, 'stroke-linecap': 'round', pathLength: 100 }, root);
-    const core = svgEl('path', { d: 'M 4 12 Q 32 -2 60 10', fill: 'none', stroke: '#ffffff', 'stroke-width': 2, 'stroke-linecap': 'round', pathLength: 100 }, root);
-    for (const [p, w] of [[outer, 5], [core, 2]] as const) {
+    const d = 'M 2 10 Q 32 2 62 7';
+    const layers: Array<[ColorKey, number]> = [['mist', 10], ['fog', 6], ['white', 2]];
+    for (const [c, w] of layers) {
+      const p = svgEl('path', { d, fill: 'none', stroke: hex(c), 'stroke-width': w, 'stroke-linecap': 'butt', pathLength: 100 }, root);
       p.style.strokeDasharray = '100';
-      frameSteps(
-        p,
-        [
-          { strokeDashoffset: '70', strokeWidth: `${w}` },
-          { strokeDashoffset: '30', strokeWidth: `${w}` },
-          { strokeDashoffset: '0', strokeWidth: `${w}` },
-          { strokeDashoffset: '0', strokeWidth: `${Math.max(1, w - 1)}` },
-          { strokeDashoffset: '-30', strokeWidth: `${Math.max(1, w - 2)}` },
-          { strokeDashoffset: '-70', strokeWidth: '1' },
-        ],
-        20,
-        false,
-      );
+      const widths = [w, w, w, Math.max(1, w * 0.7), Math.max(1, w * 0.5), 1];
+      const offsets = [40, 0, 0, 0, -35, -75];
+      frameSteps(p, offsets.map((o, i) => ({ strokeDashoffset: `${o}`, strokeWidth: `${widths[i]}` })), 20, false);
     }
   },
 };
