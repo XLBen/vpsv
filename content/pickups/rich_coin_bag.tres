@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/pickup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "rich_coin_bag"
+order = 3
+name = "大钱袋"
+sprite = "pickup.rich_coin_bag"
+effect = "gold"
+value = 100.0
+min_level = 5
+luck_affected = true
+sfx = "sfx.pickup.coin_bag"

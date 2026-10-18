@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "empty_tome"
+order = 4
+name = "空白之书"
+icon = "icon.passive.empty_tome"
+rarity = 100
+max_level = 5
+stat = "cooldown"
+per_level = -0.08
+desc = "武器冷却 -8%"
+hidden = false

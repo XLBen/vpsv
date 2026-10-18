@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/pentagram.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "gorgeous_moon"
+order = 111
+name = "华美之月"
+desc = "五芒星的进化。清屏并吸取所有经验，额外获得经验。"
+icon = "icon.weapon.gorgeous_moon"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 0.0
+cooldown = 45.0
+knockback = 0.0
+params = {
+"xp_bonus": 0.25
+}
+vfx = {}
+shader = "res://shaders/weapons/pentagram.gdshader"
+ramp = "ramp.gold"
+sfx = "sfx.weapon.pentagram"

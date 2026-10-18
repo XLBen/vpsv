@@ -1,0 +1,36 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/cross.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "heaven_sword"
+order = 104
+name = "天堂之剑"
+desc = "十字镖的进化。可造成暴击。"
+icon = "icon.weapon.heaven_sword"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 45.0
+area = 1.2
+speed = 1.25
+amount = 3
+cooldown = 1.2
+interval = 0.1
+pierce = 999
+knockback = 1.0
+params = {
+"proj_speed": 200,
+"return_accel": 420,
+"crit": 0.2
+}
+vfx = {
+"projectile": "vfx.cross.spin"
+}
+shader = ""
+ramp = "ramp.holy"
+sfx = "sfx.weapon.cross"

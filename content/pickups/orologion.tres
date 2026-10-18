@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/pickup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "orologion"
+order = 5
+name = "怀表"
+sprite = "pickup.orologion"
+effect = "freeze"
+value = 10.0
+min_level = 4
+luck_affected = true
+sfx = "sfx.pickup.freeze"

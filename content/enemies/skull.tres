@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skull"
+order = 11
+name = "飞颅"
+sprite = "actor.enemy.skull"
+hp = 20.0
+hp_per_level = 0.0
+speed = 52.0
+damage = 10.0
+radius = 6.0
+xp = 1
+knockback_resist = 0.2
+freeze_immune = false
+boss = false
+behavior = "chase"
+chest = false

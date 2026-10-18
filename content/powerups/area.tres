@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "area"
+order = 5
+name = "范围"
+icon = "icon.passive.candelabrador"
+stat = "area"
+per_rank = 0.05
+max_rank = 2
+base_cost = 300
+desc = "攻击范围 +5%"

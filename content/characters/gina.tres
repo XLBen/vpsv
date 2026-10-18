@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/character_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "gina"
+name = "吉纳"
+desc = "飞刀手。开局投射物数量 +1。"
+sprite = "actor.hero.knife"
+start_weapon = "knife"
+stats = {
+"amount": 1.0
+}
+growth_stat = ""
+growth_every = 10
+growth_amount = 0.0
+growth_cap = 0.0
+unlock = "survive_10"
+unlock_desc = "在任意关卡存活 10 分钟"
+order = 2
+portrait = "portrait.gina"

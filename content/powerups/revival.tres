@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "revival"
+order = 15
+name = "复活"
+icon = "icon.passive.tiragisu"
+stat = "revival"
+per_rank = 1.0
+max_rank = 1
+base_cost = 10000
+desc = "复活 1 次"

@@ -1,0 +1,80 @@
+[gd_resource type="Resource" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/king_bible.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/content/weapon_level.gd" id="3"]
+
+[sub_resource type="Resource" id="sub_1"]
+script = ExtResource("3")
+amount = 1
+desc = "数量 +1"
+
+[sub_resource type="Resource" id="sub_2"]
+script = ExtResource("3")
+speed = 0.3
+area = 0.25
+desc = "弹速 +30%，范围 +25%"
+
+[sub_resource type="Resource" id="sub_3"]
+script = ExtResource("3")
+damage = 10.0
+duration = 0.5
+desc = "伤害 +10，持续 +0.5 秒"
+
+[sub_resource type="Resource" id="sub_4"]
+script = ExtResource("3")
+amount = 1
+desc = "数量 +1"
+
+[sub_resource type="Resource" id="sub_5"]
+script = ExtResource("3")
+speed = 0.3
+area = 0.25
+desc = "弹速 +30%，范围 +25%"
+
+[sub_resource type="Resource" id="sub_6"]
+script = ExtResource("3")
+damage = 10.0
+duration = 0.5
+desc = "伤害 +10，持续 +0.5 秒"
+
+[sub_resource type="Resource" id="sub_7"]
+script = ExtResource("3")
+amount = 1
+desc = "数量 +1"
+
+[resource]
+script = ExtResource("1")
+id = "king_bible"
+order = 5
+name = "国王圣经"
+desc = "环绕角色旋转。"
+icon = "icon.weapon.king_bible"
+behavior = ExtResource("2")
+rarity = 80
+max_level = 8
+is_evolution = false
+hidden = false
+damage = 10.0
+area = 1.0
+speed = 1.0
+amount = 1
+duration = 3.0
+cooldown = 3.0
+hit_delay = 0.6
+knockback = 1.0
+params = {
+"radius": 40,
+"spin": 3.2
+}
+levels = Array[Resource]([SubResource("sub_1"), SubResource("sub_2"), SubResource("sub_3"), SubResource("sub_4"), SubResource("sub_5"), SubResource("sub_6"), SubResource("sub_7")])
+evolve_passive = "spellbinder"
+evolve_passive_max = false
+evolve_weapon = ""
+evolve_into = "unholy_vespers"
+vfx = {
+"orbit": "vfx.bible.book"
+}
+shader = ""
+ramp = "ramp.arcane"
+sfx = "sfx.weapon.bible"

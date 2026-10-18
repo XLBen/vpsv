@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "blood_lord"
+order = 20
+name = "鲜血领主"
+sprite = "actor.boss.blood_lord"
+hp = 400.0
+hp_per_level = 70.0
+speed = 34.0
+damage = 35.0
+radius = 15.0
+xp = 150
+knockback_resist = 1.0
+freeze_immune = false
+boss = true
+behavior = "boss_charge"
+chest = true

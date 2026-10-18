@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "glowing_bat"
+order = 14
+name = "发光蝙蝠"
+sprite = "actor.boss.glowing_bat"
+hp = 20.0
+hp_per_level = 8.0
+speed = 46.0
+damage = 10.0
+radius = 8.0
+xp = 20
+knockback_resist = 0.9
+freeze_immune = false
+boss = true
+behavior = "chase"
+chest = true

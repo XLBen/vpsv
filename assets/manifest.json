@@ -1,0 +1,4156 @@
+{
+ "version": 1,
+ "assets": {
+  "actor.boss.blood_lord": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.blood_lord.png",
+   "size": [
+    32,
+    40
+   ],
+   "pivot": [
+    16,
+    39
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.boss.giant_bat": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.giant_bat.png",
+   "size": [
+    32,
+    32
+   ],
+   "pivot": [
+    16,
+    31
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.boss.giant_mummy": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.giant_mummy.png",
+   "size": [
+    32,
+    40
+   ],
+   "pivot": [
+    16,
+    39
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.boss.giant_venus": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.giant_venus.png",
+   "size": [
+    32,
+    40
+   ],
+   "pivot": [
+    16,
+    39
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.boss.giant_werewolf": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.giant_werewolf.png",
+   "size": [
+    32,
+    32
+   ],
+   "pivot": [
+    16,
+    31
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.boss.glowing_bat": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.glowing_bat.png",
+   "size": [
+    24,
+    24
+   ],
+   "pivot": [
+    12,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.boss.mantichana": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.mantichana.png",
+   "size": [
+    32,
+    32
+   ],
+   "pivot": [
+    16,
+    31
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.boss.reaper": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.boss.reaper.png",
+   "size": [
+    32,
+    40
+   ],
+   "pivot": [
+    16,
+    39
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    },
+    "attack": {
+     "row": 4,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "boss"
+   ]
+  },
+  "actor.enemy.bat": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.bat.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    15
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.big_mummy": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.big_mummy.png",
+   "size": [
+    24,
+    32
+   ],
+   "pivot": [
+    12,
+    31
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.book": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.book.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    15
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.dullahan": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.dullahan.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.flower_wall": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.flower_wall.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    15
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.ghost": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.ghost.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    15
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.mudman": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.mudman.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    15
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.mummy": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.mummy.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.skeleton": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.skeleton.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.skull": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.skull.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    15
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.venus": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.venus.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.werewolf": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.werewolf.png",
+   "size": [
+    24,
+    24
+   ],
+   "pivot": [
+    12,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.witch": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.witch.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.enemy.zombie": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.enemy.zombie.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "enemy"
+   ]
+  },
+  "actor.hero.knife": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.hero.knife.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "hero"
+   ]
+  },
+  "actor.hero.mage": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.hero.mage.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "hero"
+   ]
+  },
+  "actor.hero.rune": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.hero.rune.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "hero"
+   ]
+  },
+  "actor.hero.whip": {
+   "type": "sheet",
+   "file": "generated/sheets/actor.hero.whip.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "walk": {
+     "row": 1,
+     "frames": 6,
+     "loop": true,
+     "fps": 8
+    },
+    "hurt": {
+     "row": 2,
+     "frames": 2,
+     "loop": false,
+     "fps": 8
+    },
+    "death": {
+     "row": 3,
+     "frames": 6,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "placeholder",
+    "hero"
+   ]
+  },
+  "bg._dev_forest": {
+   "type": "sheet",
+   "file": "generated/sheets/bg._dev_forest.png",
+   "size": [
+    320,
+    180
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "narrative",
+    "bg",
+    "placeholder"
+   ]
+  },
+  "bgm.forest": {
+   "type": "audio",
+   "file": "generated/sfx/bgm.forest.wav",
+   "duration": 14.545454545454545,
+   "tags": [
+    "bgm",
+    "placeholder"
+   ]
+  },
+  "bgm.library": {
+   "type": "audio",
+   "file": "generated/sfx/bgm.library.wav",
+   "duration": 16.551724137931036,
+   "tags": [
+    "bgm",
+    "placeholder"
+   ]
+  },
+  "cg._dev_01": {
+   "type": "sheet",
+   "file": "generated/sheets/cg._dev_01.png",
+   "size": [
+    320,
+    180
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "narrative",
+    "cg",
+    "placeholder"
+   ]
+  },
+  "cg._dev_01b": {
+   "type": "sheet",
+   "file": "generated/sheets/cg._dev_01b.png",
+   "size": [
+    320,
+    180
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "narrative",
+    "cg",
+    "placeholder"
+   ]
+  },
+  "icon.passive.armor": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.armor.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.attractorb": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.attractorb.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.bracer": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.bracer.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.candelabrador": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.candelabrador.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.clover": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.clover.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.crown": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.crown.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.duplicator": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.duplicator.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.empty_tome": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.empty_tome.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.hollow_heart": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.hollow_heart.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.pummarola": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.pummarola.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.skull_omaniac": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.skull_omaniac.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.spellbinder": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.spellbinder.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.spinach": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.spinach.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.stone_mask": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.stone_mask.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.tiragisu": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.tiragisu.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.passive.wings": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.passive.wings.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "passive"
+   ]
+  },
+  "icon.ui.banish": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.ui.banish.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "ui"
+   ]
+  },
+  "icon.ui.reroll": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.ui.reroll.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "ui"
+   ]
+  },
+  "icon.ui.skip": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.ui.skip.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "ui"
+   ]
+  },
+  "icon.weapon.axe": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.axe.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.bloody_tear": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.bloody_tear.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.clock_lancet": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.clock_lancet.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.cross": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.cross.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.death_spiral": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.death_spiral.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.ebony_wings": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.ebony_wings.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.fire_wand": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.fire_wand.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.garlic": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.garlic.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.gorgeous_moon": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.gorgeous_moon.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.heaven_sword": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.heaven_sword.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.hellfire": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.hellfire.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.holy_wand": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.holy_wand.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.king_bible": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.king_bible.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.knife": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.knife.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.la_borra": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.la_borra.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.laurel": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.laurel.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.lightning_ring": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.lightning_ring.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.magic_wand": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.magic_wand.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.no_future": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.no_future.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.peachone": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.peachone.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.pentagram": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.pentagram.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.runetracer": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.runetracer.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.santa_water": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.santa_water.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "icon.weapon.soul_eater": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.soul_eater.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.thousand_edge": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.thousand_edge.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.thunder_loop": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.thunder_loop.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.unholy_vespers": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.unholy_vespers.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.vandalier": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.vandalier.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "evolved"
+   ]
+  },
+  "icon.weapon.whip": {
+   "type": "sheet",
+   "file": "generated/sheets/icon.weapon.whip.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "icon",
+    "weapon"
+   ]
+  },
+  "motion.chest.item_pop": {
+   "type": "motion",
+   "file": "generated/motion/motion.chest.item_pop.json",
+   "duration": 700,
+   "drive": "time"
+  },
+  "motion.chest.jackpot": {
+   "type": "motion",
+   "file": "generated/motion/motion.chest.jackpot.json",
+   "duration": 1000,
+   "drive": "time"
+  },
+  "motion.chest.shake": {
+   "type": "motion",
+   "file": "generated/motion/motion.chest.shake.json",
+   "duration": 1400,
+   "drive": "time"
+  },
+  "motion.ui.banner_drop": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.banner_drop.json",
+   "duration": 900,
+   "drive": "time"
+  },
+  "motion.ui.button_hover": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.button_hover.json",
+   "duration": 600,
+   "drive": "time"
+  },
+  "motion.ui.button_press": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.button_press.json",
+   "duration": 220,
+   "drive": "time"
+  },
+  "motion.ui.card_in": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.card_in.json",
+   "duration": 450,
+   "drive": "time"
+  },
+  "motion.ui.icon_wiggle": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.icon_wiggle.json",
+   "duration": 420,
+   "drive": "time"
+  },
+  "motion.ui.number_pop": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.number_pop.json",
+   "duration": 260,
+   "drive": "time"
+  },
+  "motion.ui.panel_in": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.panel_in.json",
+   "duration": 380,
+   "drive": "time"
+  },
+  "motion.ui.panel_out": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.panel_out.json",
+   "duration": 200,
+   "drive": "time"
+  },
+  "motion.ui.scroll_reveal": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.scroll_reveal.json",
+   "duration": 1000,
+   "drive": "progress"
+  },
+  "motion.ui.toast_in": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.toast_in.json",
+   "duration": 500,
+   "drive": "time"
+  },
+  "motion.ui.toast_out": {
+   "type": "motion",
+   "file": "generated/motion/motion.ui.toast_out.json",
+   "duration": 300,
+   "drive": "time"
+  },
+  "pickup.coin": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.coin.png",
+   "size": [
+    8,
+    8
+   ],
+   "pivot": [
+    4,
+    7
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 6,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup",
+    "gold"
+   ]
+  },
+  "pickup.coin_bag": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.coin_bag.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    11
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup"
+   ]
+  },
+  "pickup.floor_chicken": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.floor_chicken.png",
+   "size": [
+    16,
+    12
+   ],
+   "pivot": [
+    8,
+    11
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup"
+   ]
+  },
+  "pickup.gem.blue": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.gem.blue.png",
+   "size": [
+    8,
+    10
+   ],
+   "pivot": [
+    4,
+    9
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 6,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup",
+    "gem"
+   ]
+  },
+  "pickup.gem.green": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.gem.green.png",
+   "size": [
+    8,
+    10
+   ],
+   "pivot": [
+    4,
+    9
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 6,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup",
+    "gem"
+   ]
+  },
+  "pickup.gem.red": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.gem.red.png",
+   "size": [
+    8,
+    10
+   ],
+   "pivot": [
+    4,
+    9
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 6,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup",
+    "gem"
+   ]
+  },
+  "pickup.little_clover": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.little_clover.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    11
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup"
+   ]
+  },
+  "pickup.orologion": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.orologion.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    11
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup"
+   ]
+  },
+  "pickup.rich_coin_bag": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.rich_coin_bag.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    11
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup"
+   ]
+  },
+  "pickup.rosary": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.rosary.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    11
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup"
+   ]
+  },
+  "pickup.vacuum": {
+   "type": "sheet",
+   "file": "generated/sheets/pickup.vacuum.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    11
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "pickup"
+   ]
+  },
+  "portrait.gina": {
+   "type": "sheet",
+   "file": "generated/sheets/portrait.gina.png",
+   "size": [
+    64,
+    96
+   ],
+   "pivot": [
+    32,
+    95
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "smile": {
+     "row": 1,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "angry": {
+     "row": 2,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "sad": {
+     "row": 3,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "surprised": {
+     "row": 4,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "narrative",
+    "portrait",
+    "placeholder"
+   ]
+  },
+  "portrait.imele": {
+   "type": "sheet",
+   "file": "generated/sheets/portrait.imele.png",
+   "size": [
+    64,
+    96
+   ],
+   "pivot": [
+    32,
+    95
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "smile": {
+     "row": 1,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "angry": {
+     "row": 2,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "sad": {
+     "row": 3,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "surprised": {
+     "row": 4,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "narrative",
+    "portrait",
+    "placeholder"
+   ]
+  },
+  "portrait.lorenzo": {
+   "type": "sheet",
+   "file": "generated/sheets/portrait.lorenzo.png",
+   "size": [
+    64,
+    96
+   ],
+   "pivot": [
+    32,
+    95
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "smile": {
+     "row": 1,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "angry": {
+     "row": 2,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "sad": {
+     "row": 3,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "surprised": {
+     "row": 4,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "narrative",
+    "portrait",
+    "placeholder"
+   ]
+  },
+  "portrait.pasca": {
+   "type": "sheet",
+   "file": "generated/sheets/portrait.pasca.png",
+   "size": [
+    64,
+    96
+   ],
+   "pivot": [
+    32,
+    95
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "smile": {
+     "row": 1,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "angry": {
+     "row": 2,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "sad": {
+     "row": 3,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "surprised": {
+     "row": 4,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "narrative",
+    "portrait",
+    "placeholder"
+   ]
+  },
+  "prop.brazier": {
+   "type": "sheet",
+   "file": "generated/sheets/prop.brazier.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "break": {
+     "row": 1,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "prop",
+    "light"
+   ]
+  },
+  "prop.candelabra": {
+   "type": "sheet",
+   "file": "generated/sheets/prop.candelabra.png",
+   "size": [
+    16,
+    24
+   ],
+   "pivot": [
+    8,
+    23
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 8
+    },
+    "break": {
+     "row": 1,
+     "frames": 4,
+     "loop": false,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "prop",
+    "light"
+   ]
+  },
+  "prop.chest": {
+   "type": "sheet",
+   "file": "generated/sheets/prop.chest.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    15
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 8,
+     "loop": true,
+     "fps": 10
+    },
+    "open": {
+     "row": 1,
+     "frames": 6,
+     "loop": false,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "prop",
+    "chest"
+   ]
+  },
+  "ramp.arcane": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.arcane.png",
+   "width": 5
+  },
+  "ramp.blood": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.blood.png",
+   "width": 5
+  },
+  "ramp.fire": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.fire.png",
+   "width": 8
+  },
+  "ramp.gold": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.gold.png",
+   "width": 5
+  },
+  "ramp.holy": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.holy.png",
+   "width": 5
+  },
+  "ramp.ice": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.ice.png",
+   "width": 6
+  },
+  "ramp.lightning": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.lightning.png",
+   "width": 6
+  },
+  "ramp.nature": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.nature.png",
+   "width": 6
+  },
+  "ramp.poison": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.poison.png",
+   "width": 5
+  },
+  "ramp.shadow": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.shadow.png",
+   "width": 5
+  },
+  "ramp.steel": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.steel.png",
+   "width": 6
+  },
+  "ramp.water": {
+   "type": "ramp",
+   "file": "generated/ramps/ramp.water.png",
+   "width": 5
+  },
+  "sfx.chest.end_a": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.chest.end_a.wav",
+   "duration": 1.2,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.chest.end_b": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.chest.end_b.wav",
+   "duration": 2,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.chest.end_c": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.chest.end_c.wav",
+   "duration": 3.2,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.chest.found": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.chest.found.wav",
+   "duration": 0.9,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.chest.item": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.chest.item.wav",
+   "duration": 0.5,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.chest.open": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.chest.open.wav",
+   "duration": 0.6,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.chest.tick": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.chest.tick.wav",
+   "duration": 0.05,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.enemy.boss_appear": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.enemy.boss_appear.wav",
+   "duration": 1.2,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.enemy.boss_down": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.enemy.boss_down.wav",
+   "duration": 1,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.enemy.dash": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.enemy.dash.wav",
+   "duration": 0.4,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.enemy.die": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.enemy.die.wav",
+   "duration": 0.15,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.enemy.hit": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.enemy.hit.wav",
+   "duration": 0.08,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.enemy.reaper": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.enemy.reaper.wav",
+   "duration": 2,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.pickup.coin": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.coin.wav",
+   "duration": 0.25,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.pickup.coin_bag": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.coin_bag.wav",
+   "duration": 0.6,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.pickup.freeze": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.freeze.wav",
+   "duration": 0.8,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.pickup.gem": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.gem.wav",
+   "duration": 0.3,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.pickup.heal": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.heal.wav",
+   "duration": 0.5,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.pickup.item": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.item.wav",
+   "duration": 0.4,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.pickup.rosary": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.rosary.wav",
+   "duration": 1,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.pickup.vacuum": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.pickup.vacuum.wav",
+   "duration": 0.8,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.player.hurt": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.player.hurt.wav",
+   "duration": 0.25,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.player.revive": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.player.revive.wav",
+   "duration": 1.2,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.prop.break": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.prop.break.wav",
+   "duration": 0.25,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.ui.banish": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.banish.wav",
+   "duration": 0.35,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.buy": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.buy.wav",
+   "duration": 0.6,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.coin_tick": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.coin_tick.wav",
+   "duration": 0.08,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.confirm": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.confirm.wav",
+   "duration": 0.15,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.deny": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.deny.wav",
+   "duration": 0.25,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.game_over": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.game_over.wav",
+   "duration": 2,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.hover": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.hover.wav",
+   "duration": 0.05,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.level_up": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.level_up.wav",
+   "duration": 1.3,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.pick": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.pick.wav",
+   "duration": 0.4,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.ui.victory": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.ui.victory.wav",
+   "duration": 2.4,
+   "tags": [
+    "sfx",
+    "casino"
+   ]
+  },
+  "sfx.weapon.axe": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.axe.wav",
+   "duration": 0.3,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.bible": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.bible.wav",
+   "duration": 0.5,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.bird": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.bird.wav",
+   "duration": 0.3,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.clock": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.clock.wav",
+   "duration": 0.3,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.cross": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.cross.wav",
+   "duration": 0.3,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.fire": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.fire.wav",
+   "duration": 0.35,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.garlic": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.garlic.wav",
+   "duration": 0.25,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.knife": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.knife.wav",
+   "duration": 0.12,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.laurel": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.laurel.wav",
+   "duration": 0.6,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.lightning": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.lightning.wav",
+   "duration": 0.5,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.pentagram": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.pentagram.wav",
+   "duration": 1.2,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.rune": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.rune.wav",
+   "duration": 0.3,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.wand": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.wand.wav",
+   "duration": 0.2,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.water": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.water.wav",
+   "duration": 0.25,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.water_splash": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.water_splash.wav",
+   "duration": 0.4,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "sfx.weapon.whip": {
+   "type": "audio",
+   "file": "generated/sfx/sfx.weapon.whip.wav",
+   "duration": 0.18,
+   "tags": [
+    "sfx"
+   ]
+  },
+  "tile.forest": {
+   "type": "sheet",
+   "file": "generated/sheets/tile.forest.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "grass": {
+     "row": 0,
+     "frames": 4,
+     "loop": false,
+     "fps": 1
+    },
+    "deco": {
+     "row": 1,
+     "frames": 8,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "tile"
+   ]
+  },
+  "tile.library": {
+   "type": "sheet",
+   "file": "generated/sheets/tile.library.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "floor": {
+     "row": 0,
+     "frames": 4,
+     "loop": false,
+     "fps": 1
+    },
+    "deco": {
+     "row": 1,
+     "frames": 6,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "tile"
+   ]
+  },
+  "ui.frame.bar": {
+   "type": "sheet",
+   "file": "generated/sheets/ui.frame.bar.png",
+   "size": [
+    8,
+    8
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "ui",
+    "margin:3"
+   ]
+  },
+  "ui.frame.button": {
+   "type": "sheet",
+   "file": "generated/sheets/ui.frame.button.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "hover": {
+     "row": 1,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "pressed": {
+     "row": 2,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "disabled": {
+     "row": 3,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "ui",
+    "margin:5"
+   ]
+  },
+  "ui.frame.card": {
+   "type": "sheet",
+   "file": "generated/sheets/ui.frame.card.png",
+   "size": [
+    24,
+    24
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    },
+    "hover": {
+     "row": 1,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "ui",
+    "margin:6"
+   ]
+  },
+  "ui.frame.panel": {
+   "type": "sheet",
+   "file": "generated/sheets/ui.frame.panel.png",
+   "size": [
+    24,
+    24
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "ui",
+    "margin:8"
+   ]
+  },
+  "ui.frame.slot": {
+   "type": "sheet",
+   "file": "generated/sheets/ui.frame.slot.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "normal": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "ui",
+    "margin:4"
+   ]
+  },
+  "ui.pattern.diamond": {
+   "type": "sheet",
+   "file": "generated/sheets/ui.pattern.diamond.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    0,
+    0
+   ],
+   "fps": 1,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": false,
+     "fps": 1
+    }
+   },
+   "tags": [
+    "ui",
+    "pattern"
+   ]
+  },
+  "vfx.axe.spin": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.axe.spin.png",
+   "size": [
+    16,
+    16
+   ],
+   "pivot": [
+    8,
+    8
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": true,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.bible.book": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.bible.book.png",
+   "size": [
+    10,
+    12
+   ],
+   "pivot": [
+    5,
+    6
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": true,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.bird.black": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.bird.black.png",
+   "size": [
+    16,
+    12
+   ],
+   "pivot": [
+    8,
+    6
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.bird.white": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.bird.white.png",
+   "size": [
+    16,
+    12
+   ],
+   "pivot": [
+    8,
+    6
+   ],
+   "fps": 10,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 10
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.clock.beam": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.clock.beam.png",
+   "size": [
+    16,
+    4
+   ],
+   "pivot": [
+    8,
+    2
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": true,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.cross.spin": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.cross.spin.png",
+   "size": [
+    12,
+    12
+   ],
+   "pivot": [
+    6,
+    6
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": true,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.fire.ball": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.fire.ball.png",
+   "size": [
+    14,
+    10
+   ],
+   "pivot": [
+    9,
+    5
+   ],
+   "fps": 12,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 12
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.knife.blade": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.knife.blade.png",
+   "size": [
+    14,
+    6
+   ],
+   "pivot": [
+    7,
+    3
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": true,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.rune.diamond": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.rune.diamond.png",
+   "size": [
+    10,
+    10
+   ],
+   "pivot": [
+    5,
+    5
+   ],
+   "fps": 12,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 12
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.wand.bolt": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.wand.bolt.png",
+   "size": [
+    10,
+    10
+   ],
+   "pivot": [
+    5,
+    5
+   ],
+   "fps": 12,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 4,
+     "loop": true,
+     "fps": 12
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.water.bottle": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.water.bottle.png",
+   "size": [
+    8,
+    10
+   ],
+   "pivot": [
+    4,
+    5
+   ],
+   "fps": 8,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 1,
+     "loop": true,
+     "fps": 8
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  },
+  "vfx.whip.slash": {
+   "type": "sheet",
+   "file": "generated/sheets/vfx.whip.slash.png",
+   "size": [
+    64,
+    16
+   ],
+   "pivot": [
+    32,
+    8
+   ],
+   "fps": 20,
+   "clips": {
+    "idle": {
+     "row": 0,
+     "frames": 6,
+     "loop": false,
+     "fps": 20
+    }
+   },
+   "tags": [
+    "vfx"
+   ]
+  }
+ },
+ "palette": {
+  "ink": "#14101c",
+  "night": "#2b2233",
+  "shadow": "#463a52",
+  "dusk": "#6b5d78",
+  "mist": "#9a8ca3",
+  "fog": "#c9bfcf",
+  "paper": "#f4ecf0",
+  "white": "#ffffff",
+  "bark": "#3d2621",
+  "wood": "#6b3d2e",
+  "clay": "#a0603f",
+  "tan": "#d08b5b",
+  "skin": "#f0c08a",
+  "cream": "#fbe3b5",
+  "wine": "#5a1a2b",
+  "blood": "#9e2835",
+  "red": "#d9443e",
+  "coral": "#f2785c",
+  "pink": "#f7a8b8",
+  "pine": "#1f3326",
+  "moss": "#2f5a35",
+  "leaf": "#4c8a3c",
+  "lime": "#86b84a",
+  "sprout": "#c6dc6c",
+  "deep": "#1c2a4f",
+  "navy": "#2d4f8a",
+  "sky": "#3f86c4",
+  "ice": "#74c3e8",
+  "frost": "#bfeefa",
+  "plum": "#3a2257",
+  "violet": "#6a3d8f",
+  "lilac": "#a46bc6",
+  "amber": "#c27a1f",
+  "gold": "#f5c542",
+  "lemon": "#fff08a"
+ }
+}

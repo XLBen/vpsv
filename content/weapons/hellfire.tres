@@ -1,0 +1,35 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/fire_wand.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "hellfire"
+order = 106
+name = "地狱火"
+desc = "火焰杖的进化。巨大的火球穿透敌人。"
+icon = "icon.weapon.hellfire"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 100.0
+area = 2.0
+speed = 0.7
+amount = 4
+cooldown = 3.0
+interval = 0.0
+pierce = 999
+knockback = 1.0
+params = {
+"proj_speed": 110,
+"spread": 0.5
+}
+vfx = {
+"projectile": "vfx.fire.ball"
+}
+shader = ""
+ramp = "ramp.fire"
+sfx = "sfx.weapon.fire"

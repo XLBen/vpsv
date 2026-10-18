@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "speed"
+order = 6
+name = "弹速"
+icon = "icon.passive.bracer"
+stat = "speed"
+per_rank = 0.1
+max_rank = 2
+base_cost = 300
+desc = "投射物速度 +10%"

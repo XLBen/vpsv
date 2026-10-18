@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "attractorb"
+order = 10
+name = "吸引球"
+icon = "icon.passive.attractorb"
+rarity = 100
+max_level = 5
+stat = "magnet"
+per_level = 0.4
+desc = "拾取范围 +40%"
+hidden = false

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/pickup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "floor_chicken"
+order = 4
+name = "烤鸡"
+sprite = "pickup.floor_chicken"
+effect = "heal"
+value = 30.0
+min_level = 0
+luck_affected = true
+sfx = "sfx.pickup.heal"

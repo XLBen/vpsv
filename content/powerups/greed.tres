@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "greed"
+order = 13
+name = "贪婪"
+icon = "icon.passive.stone_mask"
+stat = "greed"
+per_rank = 0.1
+max_rank = 5
+base_cost = 200
+desc = "金币获取 +10%"

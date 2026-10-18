@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skip"
+order = 17
+name = "跳过"
+icon = "icon.ui.skip"
+stat = "skips"
+per_rank = 2.0
+max_rank = 5
+base_cost = 100
+desc = "升级时跳过 +2"

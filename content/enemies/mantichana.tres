@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mantichana"
+order = 16
+name = "曼提卡纳"
+sprite = "actor.boss.mantichana"
+hp = 150.0
+hp_per_level = 30.0
+speed = 36.0
+damage = 25.0
+radius = 13.0
+xp = 60
+knockback_resist = 1.0
+freeze_immune = false
+boss = true
+behavior = "boss_charge"
+chest = true

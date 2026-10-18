@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "luck"
+order = 11
+name = "幸运"
+icon = "icon.passive.clover"
+stat = "luck"
+per_rank = 0.1
+max_rank = 3
+base_cost = 600
+desc = "幸运 +10%"

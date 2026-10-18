@@ -1,0 +1,11 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# 美术工作室
+art-studio/node_modules/
+art-studio/dist/
+
+# 系统 / 本地
+.DS_Store
+.claude/settings.local.json

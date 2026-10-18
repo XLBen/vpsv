@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/bombard.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "vandalier"
+order = 112
+name = "双翼骑士"
+desc = "白鸟与黑翼的合体。"
+icon = "icon.weapon.vandalier"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 35.0
+area = 1.4
+amount = 4
+cooldown = 0.8
+interval = 0.1
+hit_delay = 0.4
+knockback = 0.5
+params = {
+"radius": 80,
+"dir": 1,
+"blast": 18,
+"pair": true
+}
+vfx = {
+"bird": "vfx.bird.white",
+"bird2": "vfx.bird.black"
+}
+shader = "res://shaders/weapons/bombard.gdshader"
+ramp = "ramp.gold"
+sfx = "sfx.weapon.bird"

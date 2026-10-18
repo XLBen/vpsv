@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "hollow_heart"
+order = 2
+name = "空心之心"
+icon = "icon.passive.hollow_heart"
+rarity = 100
+max_level = 5
+stat = "max_hp_mul"
+per_level = 0.2
+desc = "最大生命 +20%"
+hidden = false

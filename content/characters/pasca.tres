@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/character_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "pasca"
+name = "帕丝卡"
+desc = "符文学者。每 5 级投射物速度 +10%（最多 +30%）。"
+sprite = "actor.hero.rune"
+start_weapon = "runetracer"
+stats = {
+"speed": 0.1
+}
+growth_stat = "speed"
+growth_every = 5
+growth_amount = 0.1
+growth_cap = 0.3
+unlock = "kills_3000"
+unlock_desc = "累计击败 3000 个敌人"
+order = 3
+portrait = "portrait.pasca"

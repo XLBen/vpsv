@@ -1,0 +1,76 @@
+[gd_resource type="Resource" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/bombard.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/content/weapon_level.gd" id="3"]
+
+[sub_resource type="Resource" id="sub_1"]
+script = ExtResource("3")
+amount = 1
+desc = "数量 +1"
+
+[sub_resource type="Resource" id="sub_2"]
+script = ExtResource("3")
+damage = 10.0
+desc = "伤害 +10"
+
+[sub_resource type="Resource" id="sub_3"]
+script = ExtResource("3")
+area = 0.25
+desc = "范围 +25%"
+
+[sub_resource type="Resource" id="sub_4"]
+script = ExtResource("3")
+amount = 1
+desc = "数量 +1"
+
+[sub_resource type="Resource" id="sub_5"]
+script = ExtResource("3")
+damage = 10.0
+desc = "伤害 +10"
+
+[sub_resource type="Resource" id="sub_6"]
+script = ExtResource("3")
+area = 0.25
+desc = "范围 +25%"
+
+[sub_resource type="Resource" id="sub_7"]
+script = ExtResource("3")
+amount = 1
+desc = "数量 +1"
+
+[resource]
+script = ExtResource("1")
+id = "ebony_wings"
+order = 13
+name = "黑翼"
+desc = "逆时针盘旋，轰炸一片区域。"
+icon = "icon.weapon.ebony_wings"
+behavior = ExtResource("2")
+rarity = 60
+max_level = 8
+is_evolution = false
+hidden = false
+damage = 10.0
+area = 1.0
+amount = 1
+cooldown = 1.0
+interval = 0.15
+hit_delay = 0.5
+knockback = 0.5
+params = {
+"radius": 70,
+"dir": -1,
+"blast": 14
+}
+levels = Array[Resource]([SubResource("sub_1"), SubResource("sub_2"), SubResource("sub_3"), SubResource("sub_4"), SubResource("sub_5"), SubResource("sub_6"), SubResource("sub_7")])
+evolve_passive = ""
+evolve_passive_max = false
+evolve_weapon = "peachone"
+evolve_into = "vandalier"
+vfx = {
+"bird": "vfx.bird.black"
+}
+shader = "res://shaders/weapons/bombard.gdshader"
+ramp = "ramp.shadow"
+sfx = "sfx.weapon.bird"

@@ -1,0 +1,253 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/stage_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "library"
+name = "镶嵌书库"
+desc = "一条横向无尽的长廊，上下无路可逃。"
+tileset = "tile.library"
+light_source = "prop.candelabra"
+bounded_height = 220.0
+duration = 1800.0
+light_density = 0.8
+max_enemies = 400
+bgm = "bgm.library"
+unlock = "forest_reach_lv_20"
+unlock_desc = "在疯狂森林达到 20 级"
+drops = {
+"coin": 50,
+"coin_bag": 10,
+"floor_chicken": 12,
+"orologion": 2,
+"rich_coin_bag": 1,
+"rosary": 1,
+"vacuum": 2,
+"little_clover": 1
+}
+order = 1
+waves = Array[Dictionary]([{
+"enemies": ["book"],
+"min": 20,
+"interval": 1.0,
+"boss": ""
+}, {
+"enemies": ["book", "ghost"],
+"min": 30,
+"interval": 1.0,
+"boss": "glowing_bat"
+}, {
+"enemies": ["skull"],
+"min": 40,
+"interval": 0.5,
+"boss": ""
+}, {
+"enemies": ["skull", "book"],
+"min": 50,
+"interval": 0.5,
+"boss": "glowing_bat"
+}, {
+"enemies": ["mummy"],
+"min": 30,
+"interval": 1.0,
+"boss": ""
+}, {
+"enemies": ["mummy", "skull"],
+"min": 40,
+"interval": 0.5,
+"boss": "mantichana"
+}, {
+"enemies": ["witch"],
+"min": 30,
+"interval": 1.0,
+"boss": ""
+}, {
+"enemies": ["witch", "book"],
+"min": 60,
+"interval": 0.5,
+"boss": "glowing_bat"
+}, {
+"enemies": ["dullahan"],
+"min": 20,
+"interval": 1.0,
+"boss": "giant_bat"
+}, {
+"enemies": ["dullahan", "skull"],
+"min": 60,
+"interval": 0.5,
+"boss": ""
+}, {
+"enemies": ["witch", "ghost"],
+"min": 80,
+"interval": 0.25,
+"boss": "giant_mummy"
+}, {
+"enemies": ["book"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["dullahan", "witch"],
+"min": 100,
+"interval": 0.25,
+"boss": ""
+}, {
+"enemies": ["mummy", "big_mummy"],
+"min": 100,
+"interval": 0.25,
+"boss": "giant_bat"
+}, {
+"enemies": ["skull", "ghost"],
+"min": 200,
+"interval": 0.1,
+"boss": ""
+}, {
+"enemies": ["big_mummy", "dullahan"],
+"min": 120,
+"interval": 0.25,
+"boss": "giant_werewolf"
+}, {
+"enemies": ["witch", "skull"],
+"min": 200,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["big_mummy"],
+"min": 60,
+"interval": 0.5,
+"boss": ""
+}, {
+"enemies": ["big_mummy", "witch"],
+"min": 120,
+"interval": 0.25,
+"boss": "giant_bat"
+}, {
+"enemies": ["dullahan", "book"],
+"min": 250,
+"interval": 0.1,
+"boss": ""
+}, {
+"enemies": ["big_mummy", "dullahan", "witch"],
+"min": 150,
+"interval": 0.1,
+"boss": "giant_mummy"
+}, {
+"enemies": ["book", "skull"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["big_mummy", "witch"],
+"min": 250,
+"interval": 0.1,
+"boss": ""
+}, {
+"enemies": ["dullahan", "ghost"],
+"min": 300,
+"interval": 0.1,
+"boss": "giant_bat"
+}, {
+"enemies": ["big_mummy", "dullahan"],
+"min": 300,
+"interval": 0.1,
+"boss": ""
+}, {
+"enemies": ["witch", "skull"],
+"min": 200,
+"interval": 0.1,
+"boss": "giant_venus"
+}, {
+"enemies": ["big_mummy", "book"],
+"min": 300,
+"interval": 0.1,
+"boss": ""
+}, {
+"enemies": ["dullahan", "witch"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["big_mummy", "skull"],
+"min": 300,
+"interval": 0.1,
+"boss": "blood_lord"
+}, {
+"enemies": ["book", "ghost", "skull"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}])
+events = Array[Dictionary]([{
+"at": 150.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 24,
+"chance": 0.4
+}, {
+"at": 330.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 30,
+"chance": 0.55
+}, {
+"at": 510.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 36,
+"chance": 0.7
+}, {
+"at": 690.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 42,
+"chance": 0.8500000000000001
+}, {
+"at": 870.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 48,
+"chance": 1.0
+}, {
+"at": 1050.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 54,
+"chance": 1.0
+}, {
+"at": 1230.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 60,
+"chance": 1.0
+}, {
+"at": 1410.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 66,
+"chance": 1.0
+}, {
+"at": 1590.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 72,
+"chance": 1.0
+}, {
+"at": 1770.0,
+"type": "bat_swarm",
+"enemy": "book",
+"count": 78,
+"chance": 1.0
+}, {
+"at": 720.0,
+"type": "ghost_swarm",
+"count": 30
+}, {
+"at": 1440.0,
+"type": "ghost_swarm",
+"count": 30
+}, {
+"at": 1680.0,
+"type": "ghost_swarm",
+"count": 30
+}])

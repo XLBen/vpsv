@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "wings"
+order = 9
+name = "羽翼"
+icon = "icon.passive.wings"
+rarity = 100
+max_level = 5
+stat = "move_speed"
+per_level = 0.1
+desc = "移动速度 +10%"
+hidden = false

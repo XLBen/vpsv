@@ -1,0 +1,77 @@
+[gd_resource type="Resource" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/garlic.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/content/weapon_level.gd" id="3"]
+
+[sub_resource type="Resource" id="sub_1"]
+script = ExtResource("3")
+area = 0.4
+damage = 2.0
+desc = "范围 +40%，伤害 +2"
+
+[sub_resource type="Resource" id="sub_2"]
+script = ExtResource("3")
+cooldown = 0.1
+damage = 1.0
+desc = "冷却 -0.1 秒，伤害 +1"
+
+[sub_resource type="Resource" id="sub_3"]
+script = ExtResource("3")
+area = 0.2
+damage = 1.0
+desc = "范围 +20%，伤害 +1"
+
+[sub_resource type="Resource" id="sub_4"]
+script = ExtResource("3")
+cooldown = 0.1
+damage = 2.0
+desc = "冷却 -0.1 秒，伤害 +2"
+
+[sub_resource type="Resource" id="sub_5"]
+script = ExtResource("3")
+area = 0.2
+damage = 1.0
+desc = "范围 +20%，伤害 +1"
+
+[sub_resource type="Resource" id="sub_6"]
+script = ExtResource("3")
+cooldown = 0.1
+damage = 1.0
+desc = "冷却 -0.1 秒，伤害 +1"
+
+[sub_resource type="Resource" id="sub_7"]
+script = ExtResource("3")
+area = 0.2
+damage = 1.0
+desc = "范围 +20%，伤害 +1"
+
+[resource]
+script = ExtResource("1")
+id = "garlic"
+order = 7
+name = "大蒜"
+desc = "伤害附近的敌人并削弱其击退抗性。"
+icon = "icon.weapon.garlic"
+behavior = ExtResource("2")
+rarity = 70
+max_level = 8
+is_evolution = false
+hidden = false
+damage = 5.0
+area = 1.0
+cooldown = 1.3
+hit_delay = 1.3
+knockback = 0.5
+params = {
+"radius": 22
+}
+levels = Array[Resource]([SubResource("sub_1"), SubResource("sub_2"), SubResource("sub_3"), SubResource("sub_4"), SubResource("sub_5"), SubResource("sub_6"), SubResource("sub_7")])
+evolve_passive = "pummarola"
+evolve_passive_max = false
+evolve_weapon = ""
+evolve_into = "soul_eater"
+vfx = {}
+shader = "res://shaders/weapons/garlic.gdshader"
+ramp = "ramp.holy"
+sfx = "sfx.weapon.garlic"

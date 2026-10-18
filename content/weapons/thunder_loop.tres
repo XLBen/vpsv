@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/lightning_ring.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "thunder_loop"
+order = 110
+name = "雷霆回路"
+desc = "雷电指环的进化。每道闪电落下两次。"
+icon = "icon.weapon.thunder_loop"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 65.0
+area = 1.3
+amount = 6
+cooldown = 4.5
+interval = 0.05
+knockback = 0.0
+params = {
+"radius": 18,
+"repeat": 2
+}
+vfx = {}
+shader = "res://shaders/weapons/lightning.gdshader"
+ramp = "ramp.lightning"
+sfx = "sfx.weapon.lightning"

@@ -1,0 +1,19 @@
+{
+	"_说明": "音效播放规则。键为音效 id，可用末尾 * 匹配前缀。gap 最小间隔(秒) · poly 同时播放上限 · pitch_var 音高随机幅度 · volume 线性音量 · combo 连拾音阶（window 秒内每次升到 steps 的下一个半音）",
+	"default": {"gap": 0.0, "poly": 6, "pitch_var": 0.0, "volume": 0.8},
+	"sfx.weapon.*": {"gap": 0.06, "poly": 3, "pitch_var": 0.06, "volume": 0.45},
+	"sfx.weapon.pentagram": {"volume": 0.8},
+	"sfx.enemy.hit": {"gap": 0.045, "poly": 4, "pitch_var": 0.15, "volume": 0.35},
+	"sfx.enemy.die": {"gap": 0.05, "poly": 4, "pitch_var": 0.2, "volume": 0.3},
+	"sfx.enemy.boss_appear": {"volume": 0.9},
+	"sfx.enemy.reaper": {"volume": 1.0},
+	"sfx.player.hurt": {"gap": 0.1, "poly": 1, "volume": 0.8},
+	"sfx.pickup.gem": {"gap": 0.03, "poly": 5, "volume": 0.5, "combo": {"window": 0.4, "steps": [0, 2, 4, 5, 7, 9, 11, 12]}},
+	"sfx.pickup.coin": {"gap": 0.03, "poly": 4, "pitch_var": 0.08, "volume": 0.5},
+	"sfx.prop.break": {"gap": 0.05, "poly": 3, "pitch_var": 0.1, "volume": 0.6},
+	"sfx.chest.tick": {"poly": 2, "volume": 0.7},
+	"sfx.chest.item": {"poly": 5, "pitch_var": 0.05},
+	"sfx.ui.hover": {"gap": 0.04, "poly": 1, "volume": 0.35},
+	"sfx.ui.coin_tick": {"gap": 0.025, "poly": 3, "pitch_var": 0.1, "volume": 0.45},
+	"sfx.ui.level_up": {"volume": 0.85}
+}

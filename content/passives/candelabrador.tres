@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "candelabrador"
+order = 5
+name = "烛台"
+icon = "icon.passive.candelabrador"
+rarity = 100
+max_level = 5
+stat = "area"
+per_level = 0.1
+desc = "攻击范围 +10%"
+hidden = false

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "witch"
+order = 13
+name = "女巫"
+sprite = "actor.enemy.witch"
+hp = 60.0
+hp_per_level = 0.0
+speed = 32.0
+damage = 15.0
+radius = 6.0
+xp = 2
+knockback_resist = 0.3
+freeze_immune = false
+boss = false
+behavior = "chase"
+chest = false

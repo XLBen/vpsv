@@ -1,0 +1,42 @@
+// 开发用测试剧本：覆盖全部语法，供单元测试与 --narrative-test 使用。不接入任何玩法。
+@bg bg._dev_forest
+@bgm bgm.library
+@set met = met + 1
+@show lorenzo left normal
+lorenzo: 夜幕又降临了。这是我们第 {met} 次见面。
+@show imele right smile
+imele: 别愣着，蝙蝠群要来了！
+: 远处传来翅膀拍打的声音。
+@if met >= 3 -> veteran
+? 迎战 -> fight
+? 撤退 -> flee
+? [met >= 2] 交给伊梅尔 -> trust
+
+# fight
+@show lorenzo left angry
+lorenzo: 来吧！
+@set courage = courage + 1
+@jump after
+
+# flee
+@show lorenzo left sad
+lorenzo: ……先避一避。
+@jump after
+
+# trust
+imele: 交给我吧。
+@jump after
+
+# veteran
+lorenzo: 老规矩，速战速决。
+
+# after
+@sfx sfx.ui.level_up
+@cg _dev_cg_01 0
+: 月光下，战斗结束了。
+@cg _dev_cg_01 1
+: 天边泛起了紫色。
+@cg off
+@hide all
+@wait 0.2
+@end

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "giant_venus"
+order = 19
+name = "巨型食人花"
+sprite = "actor.boss.giant_venus"
+hp = 350.0
+hp_per_level = 60.0
+speed = 26.0
+damage = 30.0
+radius = 14.0
+xp = 120
+knockback_resist = 1.0
+freeze_immune = false
+boss = true
+behavior = "chase"
+chest = true

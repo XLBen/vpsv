@@ -1,0 +1,83 @@
+[gd_resource type="Resource" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/santa_water.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/content/weapon_level.gd" id="3"]
+
+[sub_resource type="Resource" id="sub_1"]
+script = ExtResource("3")
+amount = 1
+area = 0.2
+desc = "数量 +1，范围 +20%"
+
+[sub_resource type="Resource" id="sub_2"]
+script = ExtResource("3")
+damage = 10.0
+duration = 0.5
+desc = "伤害 +10，持续 +0.5 秒"
+
+[sub_resource type="Resource" id="sub_3"]
+script = ExtResource("3")
+amount = 1
+area = 0.2
+desc = "数量 +1，范围 +20%"
+
+[sub_resource type="Resource" id="sub_4"]
+script = ExtResource("3")
+damage = 10.0
+duration = 0.3
+desc = "伤害 +10，持续 +0.3 秒"
+
+[sub_resource type="Resource" id="sub_5"]
+script = ExtResource("3")
+amount = 1
+area = 0.2
+desc = "数量 +1，范围 +20%"
+
+[sub_resource type="Resource" id="sub_6"]
+script = ExtResource("3")
+damage = 5.0
+duration = 0.3
+desc = "伤害 +5，持续 +0.3 秒"
+
+[sub_resource type="Resource" id="sub_7"]
+script = ExtResource("3")
+damage = 5.0
+area = 0.2
+desc = "伤害 +5，范围 +20%"
+
+[resource]
+script = ExtResource("1")
+id = "santa_water"
+order = 8
+name = "圣水"
+desc = "落地后形成持续伤害的圣火区域。"
+icon = "icon.weapon.santa_water"
+behavior = ExtResource("2")
+rarity = 80
+max_level = 8
+is_evolution = false
+hidden = false
+damage = 10.0
+area = 1.0
+amount = 1
+duration = 2.0
+cooldown = 4.5
+interval = 0.3
+hit_delay = 0.3
+knockback = 0.0
+params = {
+"radius": 18,
+"throw_range": 90
+}
+levels = Array[Resource]([SubResource("sub_1"), SubResource("sub_2"), SubResource("sub_3"), SubResource("sub_4"), SubResource("sub_5"), SubResource("sub_6"), SubResource("sub_7")])
+evolve_passive = "attractorb"
+evolve_passive_max = false
+evolve_weapon = ""
+evolve_into = "la_borra"
+vfx = {
+"bottle": "vfx.water.bottle"
+}
+shader = "res://shaders/weapons/santa_water.gdshader"
+ramp = "ramp.water"
+sfx = "sfx.weapon.water"

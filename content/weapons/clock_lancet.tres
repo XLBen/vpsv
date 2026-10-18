@@ -1,0 +1,64 @@
+[gd_resource type="Resource" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/clock_lancet.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/content/weapon_level.gd" id="3"]
+
+[sub_resource type="Resource" id="sub_1"]
+script = ExtResource("3")
+duration = 0.2
+desc = "持续 +0.2 秒"
+
+[sub_resource type="Resource" id="sub_2"]
+script = ExtResource("3")
+cooldown = 0.2
+desc = "冷却 -0.2 秒"
+
+[sub_resource type="Resource" id="sub_3"]
+script = ExtResource("3")
+duration = 0.2
+desc = "持续 +0.2 秒"
+
+[sub_resource type="Resource" id="sub_4"]
+script = ExtResource("3")
+cooldown = 0.2
+desc = "冷却 -0.2 秒"
+
+[sub_resource type="Resource" id="sub_5"]
+script = ExtResource("3")
+duration = 0.4
+desc = "持续 +0.4 秒"
+
+[resource]
+script = ExtResource("1")
+id = "clock_lancet"
+order = 14
+name = "时钟长枪"
+desc = "射出冻结光束，每次方向顺时针转动。"
+icon = "icon.weapon.clock_lancet"
+behavior = ExtResource("2")
+rarity = 50
+max_level = 6
+is_evolution = false
+hidden = false
+damage = 0.0
+speed = 1.0
+amount = 1
+duration = 1.0
+cooldown = 2.0
+pierce = 999
+knockback = 0.0
+params = {
+"proj_speed": 260
+}
+levels = Array[Resource]([SubResource("sub_1"), SubResource("sub_2"), SubResource("sub_3"), SubResource("sub_4"), SubResource("sub_5")])
+evolve_passive = ""
+evolve_passive_max = false
+evolve_weapon = ""
+evolve_into = ""
+vfx = {
+"beam": "vfx.clock.beam"
+}
+shader = "res://shaders/weapons/freeze_beam.gdshader"
+ramp = "ramp.ice"
+sfx = "sfx.weapon.clock"

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "magnet"
+order = 10
+name = "磁力"
+icon = "icon.passive.attractorb"
+stat = "magnet"
+per_rank = 0.25
+max_rank = 2
+base_cost = 300
+desc = "拾取范围 +25%"

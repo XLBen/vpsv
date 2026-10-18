@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/pickup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "rosary"
+order = 6
+name = "念珠"
+sprite = "pickup.rosary"
+effect = "clear"
+value = 0.0
+min_level = 8
+luck_affected = true
+sfx = "sfx.pickup.rosary"

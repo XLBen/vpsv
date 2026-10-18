@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "giant_bat"
+order = 15
+name = "巨型蝙蝠"
+sprite = "actor.boss.giant_bat"
+hp = 80.0
+hp_per_level = 20.0
+speed = 44.0
+damage = 20.0
+radius = 12.0
+xp = 40
+knockback_resist = 0.9
+freeze_immune = false
+boss = true
+behavior = "chase"
+chest = true

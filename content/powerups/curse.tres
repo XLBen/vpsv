@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "curse"
+order = 14
+name = "诅咒"
+icon = "icon.passive.skull_omaniac"
+stat = "curse"
+per_rank = 0.1
+max_rank = 5
+base_cost = 1666
+desc = "敌人更多更强（收益也更高）"

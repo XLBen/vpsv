@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "reroll"
+order = 16
+name = "重抽"
+icon = "icon.ui.reroll"
+stat = "rerolls"
+per_rank = 2.0
+max_rank = 5
+base_cost = 1000
+desc = "升级时重抽 +2"

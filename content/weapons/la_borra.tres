@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/santa_water.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "la_borra"
+order = 108
+name = "圣泉"
+desc = "圣水的进化。圣火区域会扩大并跟随你。"
+icon = "icon.weapon.la_borra"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 30.0
+area = 1.6
+amount = 4
+duration = 4.0
+cooldown = 4.5
+interval = 0.3
+hit_delay = 0.3
+knockback = 0.0
+params = {
+"radius": 20,
+"throw_range": 70,
+"grow": 0.4,
+"follow": 30
+}
+vfx = {
+"bottle": "vfx.water.bottle"
+}
+shader = "res://shaders/weapons/santa_water.gdshader"
+ramp = "ramp.holy"
+sfx = "sfx.weapon.water"

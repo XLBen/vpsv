@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "dullahan"
+order = 12
+name = "无头骑士"
+sprite = "actor.enemy.dullahan"
+hp = 120.0
+hp_per_level = 0.0
+speed = 38.0
+damage = 20.0
+radius = 7.0
+xp = 3
+knockback_resist = 0.6
+freeze_immune = false
+boss = false
+behavior = "chase"
+chest = false

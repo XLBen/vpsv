@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "werewolf"
+order = 5
+name = "狼人"
+sprite = "actor.enemy.werewolf"
+hp = 80.0
+hp_per_level = 0.0
+speed = 44.0
+damage = 15.0
+radius = 9.0
+xp = 3
+knockback_resist = 0.5
+freeze_immune = false
+boss = false
+behavior = "chase"
+chest = false

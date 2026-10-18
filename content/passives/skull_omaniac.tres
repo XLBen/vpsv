@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "skull_omaniac"
+order = 14
+name = "骷髅狂人"
+icon = "icon.passive.skull_omaniac"
+rarity = 50
+max_level = 5
+stat = "curse"
+per_level = 0.1
+desc = "敌人速度、生命、数量 +10%"
+hidden = false

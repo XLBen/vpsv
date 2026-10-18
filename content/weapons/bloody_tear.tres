@@ -1,0 +1,36 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/whip.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "bloody_tear"
+order = 100
+name = "血泪"
+desc = "皮鞭的进化。命中有几率回复生命。"
+icon = "icon.weapon.bloody_tear"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 30.0
+area = 1.2
+amount = 2
+cooldown = 1.35
+interval = 0.1
+knockback = 1.0
+pierce = 999
+params = {
+"length": 70,
+"height": 18,
+"heal": 8,
+"heal_chance": 0.1
+}
+vfx = {
+"slash": "vfx.whip.slash"
+}
+shader = ""
+ramp = "ramp.blood"
+sfx = "sfx.weapon.whip"

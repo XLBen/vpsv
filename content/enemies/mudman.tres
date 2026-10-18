@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "mudman"
+order = 4
+name = "泥人"
+sprite = "actor.enemy.mudman"
+hp = 30.0
+hp_per_level = 0.0
+speed = 28.0
+damage = 10.0
+radius = 7.0
+xp = 2
+knockback_resist = 0.4
+freeze_immune = false
+boss = false
+behavior = "chase"
+chest = false

@@ -1,0 +1,35 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/death_spiral.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "death_spiral"
+order = 103
+name = "死亡螺旋"
+desc = "飞斧的进化。螺旋向外穿透一切。"
+icon = "icon.weapon.death_spiral"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 60.0
+area = 1.5
+speed = 1.0
+amount = 9
+cooldown = 3.0
+interval = 0.0
+pierce = 999
+knockback = 1.0
+params = {
+"proj_speed": 120,
+"turn": 1.6
+}
+vfx = {
+"projectile": "vfx.axe.spin"
+}
+shader = ""
+ramp = "ramp.arcane"
+sfx = "sfx.weapon.axe"

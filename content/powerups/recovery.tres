@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/powerup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "recovery"
+order = 3
+name = "回复"
+icon = "icon.passive.pummarola"
+stat = "recovery"
+per_rank = 0.1
+max_rank = 5
+base_cost = 200
+desc = "每秒回复 +0.1"

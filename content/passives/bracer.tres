@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "bracer"
+order = 6
+name = "护腕"
+icon = "icon.passive.bracer"
+rarity = 100
+max_level = 5
+stat = "speed"
+per_level = 0.1
+desc = "投射物速度 +10%"
+hidden = false

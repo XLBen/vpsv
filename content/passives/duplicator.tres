@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "duplicator"
+order = 8
+name = "复制器"
+icon = "icon.passive.duplicator"
+rarity = 100
+max_level = 2
+stat = "amount"
+per_level = 1.0
+desc = "投射物数量 +1"
+hidden = false

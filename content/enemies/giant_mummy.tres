@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "giant_mummy"
+order = 18
+name = "木乃伊之王"
+sprite = "actor.boss.giant_mummy"
+hp = 300.0
+hp_per_level = 50.0
+speed = 30.0
+damage = 30.0
+radius = 14.0
+xp = 100
+knockback_resist = 1.0
+freeze_immune = false
+boss = true
+behavior = "chase"
+chest = true

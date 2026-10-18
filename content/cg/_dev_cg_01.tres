@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/cg_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "_dev_cg_01"
+title = "测试 CG"
+thumbnail = "cg._dev_01"
+variants = Array[String](["cg._dev_01", "cg._dev_01b"])
+order = 0
+hidden_until_unlocked = true

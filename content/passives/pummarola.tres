@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "pummarola"
+order = 3
+name = "番茄"
+icon = "icon.passive.pummarola"
+rarity = 100
+max_level = 5
+stat = "recovery"
+per_level = 0.2
+desc = "每秒回复 0.2 生命"
+hidden = false

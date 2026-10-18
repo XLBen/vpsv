@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/pickup_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "little_clover"
+order = 8
+name = "小四叶草"
+sprite = "pickup.little_clover"
+effect = "luck"
+value = 0.1
+min_level = 0
+luck_affected = true
+sfx = "sfx.pickup.item"

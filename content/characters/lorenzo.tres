@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/character_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "lorenzo"
+name = "罗伦佐"
+desc = "挥舞皮鞭的猎人。每 10 级伤害 +10%（最多 +50%）。"
+sprite = "actor.hero.whip"
+start_weapon = "whip"
+stats = {
+"max_hp": 20.0
+}
+growth_stat = "might"
+growth_every = 10
+growth_amount = 0.1
+growth_cap = 0.5
+unlock = ""
+unlock_desc = ""
+order = 0
+portrait = "portrait.lorenzo"

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/runetracer.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "no_future"
+order = 109
+name = "无未来"
+desc = "符文追踪的进化。反弹时引发爆炸。"
+icon = "icon.weapon.no_future"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 40.0
+speed = 1.4
+amount = 3
+duration = 3.0
+cooldown = 3.0
+interval = 0.3
+pierce = 999
+hit_delay = 0.4
+knockback = 1.0
+params = {
+"proj_speed": 180,
+"explode": 26
+}
+vfx = {
+"projectile": "vfx.rune.diamond"
+}
+shader = ""
+ramp = "ramp.blood"
+sfx = "sfx.weapon.rune"

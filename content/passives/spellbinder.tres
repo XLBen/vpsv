@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/passive_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "spellbinder"
+order = 7
+name = "咒缚书"
+icon = "icon.passive.spellbinder"
+rarity = 100
+max_level = 5
+stat = "duration"
+per_level = 0.1
+desc = "武器持续时间 +10%"
+hidden = false

@@ -1,0 +1,282 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/stage_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "forest"
+name = "疯狂森林"
+desc = "开阔的森林，四面八方都会涌来敌人。"
+tileset = "tile.forest"
+light_source = "prop.brazier"
+bounded_height = 0.0
+duration = 1800.0
+light_density = 0.6
+max_enemies = 400
+bgm = "bgm.forest"
+unlock = ""
+unlock_desc = ""
+drops = {
+"coin": 50,
+"coin_bag": 10,
+"floor_chicken": 12,
+"orologion": 2,
+"rich_coin_bag": 1,
+"rosary": 1,
+"vacuum": 2,
+"little_clover": 1
+}
+order = 0
+waves = Array[Dictionary]([{
+"enemies": ["bat"],
+"min": 15,
+"interval": 1.0,
+"boss": ""
+}, {
+"enemies": ["zombie", "bat"],
+"min": 30,
+"interval": 1.0,
+"boss": "glowing_bat"
+}, {
+"enemies": ["bat"],
+"min": 50,
+"interval": 0.5,
+"boss": ""
+}, {
+"enemies": ["skeleton"],
+"min": 40,
+"interval": 0.25,
+"boss": "glowing_bat"
+}, {
+"enemies": ["skeleton", "ghost"],
+"min": 30,
+"interval": 1.0,
+"boss": ""
+}, {
+"enemies": ["mudman"],
+"min": 10,
+"interval": 1.0,
+"boss": "mantichana"
+}, {
+"enemies": ["zombie", "mudman"],
+"min": 20,
+"interval": 0.5,
+"boss": ""
+}, {
+"enemies": ["bat", "mudman"],
+"min": 80,
+"interval": 0.5,
+"boss": "glowing_bat"
+}, {
+"enemies": ["zombie"],
+"min": 100,
+"interval": 1.5,
+"boss": "giant_bat"
+}, {
+"enemies": ["zombie", "werewolf"],
+"min": 30,
+"interval": 0.5,
+"boss": "glowing_bat"
+}, {
+"enemies": ["mudman"],
+"min": 10,
+"interval": 0.5,
+"boss": "giant_werewolf"
+}, {
+"enemies": ["skeleton"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["werewolf", "ghost", "skeleton"],
+"min": 20,
+"interval": 0.25,
+"boss": "glowing_bat"
+}, {
+"enemies": ["werewolf", "ghost"],
+"min": 150,
+"interval": 0.5,
+"boss": ""
+}, {
+"enemies": ["werewolf"],
+"min": 20,
+"interval": 0.1,
+"boss": "giant_bat"
+}, {
+"enemies": ["werewolf", "mudman"],
+"min": 100,
+"interval": 0.1,
+"boss": "giant_werewolf"
+}, {
+"enemies": ["mudman", "zombie"],
+"min": 100,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["big_mummy"],
+"min": 20,
+"interval": 1.0,
+"boss": ""
+}, {
+"enemies": ["big_mummy", "mudman"],
+"min": 60,
+"interval": 0.5,
+"boss": "giant_bat"
+}, {
+"enemies": ["big_mummy", "mudman"],
+"min": 100,
+"interval": 0.5,
+"boss": ""
+}, {
+"enemies": ["big_mummy", "mudman", "werewolf"],
+"min": 100,
+"interval": 0.1,
+"boss": "giant_mummy"
+}, {
+"enemies": ["venus", "bat"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["big_mummy", "venus"],
+"min": 200,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["big_mummy", "venus"],
+"min": 300,
+"interval": 0.1,
+"boss": "giant_bat"
+}, {
+"enemies": ["big_mummy", "venus"],
+"min": 300,
+"interval": 0.1,
+"boss": ""
+}, {
+"enemies": ["venus"],
+"min": 100,
+"interval": 0.1,
+"boss": "giant_venus"
+}, {
+"enemies": ["venus", "werewolf"],
+"min": 150,
+"interval": 0.1,
+"boss": ""
+}, {
+"enemies": ["big_mummy", "mudman"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}, {
+"enemies": ["werewolf", "bat"],
+"min": 300,
+"interval": 0.1,
+"boss": "blood_lord"
+}, {
+"enemies": ["bat", "ghost"],
+"min": 300,
+"interval": 0.1,
+"boss": "glowing_bat"
+}])
+events = Array[Dictionary]([{
+"at": 150.0,
+"type": "bat_swarm",
+"count": 24,
+"chance": 0.4
+}, {
+"at": 270.0,
+"type": "bat_swarm",
+"count": 28,
+"chance": 0.5
+}, {
+"at": 390.0,
+"type": "bat_swarm",
+"count": 32,
+"chance": 0.6000000000000001
+}, {
+"at": 510.0,
+"type": "bat_swarm",
+"count": 36,
+"chance": 0.7
+}, {
+"at": 630.0,
+"type": "bat_swarm",
+"count": 40,
+"chance": 0.8
+}, {
+"at": 750.0,
+"type": "bat_swarm",
+"count": 44,
+"chance": 0.9000000000000001
+}, {
+"at": 870.0,
+"type": "bat_swarm",
+"count": 48,
+"chance": 1.0
+}, {
+"at": 990.0,
+"type": "bat_swarm",
+"count": 52,
+"chance": 1.0
+}, {
+"at": 1110.0,
+"type": "bat_swarm",
+"count": 56,
+"chance": 1.0
+}, {
+"at": 1230.0,
+"type": "bat_swarm",
+"count": 60,
+"chance": 1.0
+}, {
+"at": 1350.0,
+"type": "bat_swarm",
+"count": 64,
+"chance": 1.0
+}, {
+"at": 1470.0,
+"type": "bat_swarm",
+"count": 68,
+"chance": 1.0
+}, {
+"at": 1590.0,
+"type": "bat_swarm",
+"count": 72,
+"chance": 1.0
+}, {
+"at": 1710.0,
+"type": "bat_swarm",
+"count": 76,
+"chance": 1.0
+}, {
+"at": 780.0,
+"type": "ghost_swarm",
+"count": 30
+}, {
+"at": 1500.0,
+"type": "ghost_swarm",
+"count": 30
+}, {
+"at": 1620.0,
+"type": "ghost_swarm",
+"count": 30
+}, {
+"at": 1740.0,
+"type": "ghost_swarm",
+"count": 30
+}, {
+"at": 600.0,
+"type": "flower_wall",
+"count": 48,
+"radius": 200.0
+}, {
+"at": 900.0,
+"type": "flower_wall",
+"count": 48,
+"radius": 200.0
+}, {
+"at": 1260.0,
+"type": "flower_wall",
+"count": 48,
+"radius": 200.0
+}])

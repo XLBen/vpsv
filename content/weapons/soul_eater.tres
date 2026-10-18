@@ -1,0 +1,30 @@
+[gd_resource type="Resource" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/weapon_def.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/garlic.gd" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = "soul_eater"
+order = 107
+name = "噬魂者"
+desc = "大蒜的进化。每次命中回复生命。"
+icon = "icon.weapon.soul_eater"
+behavior = ExtResource("2")
+rarity = 100
+max_level = 1
+is_evolution = true
+hidden = true
+damage = 15.0
+area = 2.0
+cooldown = 0.6
+hit_delay = 0.6
+knockback = 0.7
+params = {
+"radius": 26,
+"heal": 0.4
+}
+vfx = {}
+shader = "res://shaders/weapons/garlic.gdshader"
+ramp = "ramp.blood"
+sfx = "sfx.weapon.garlic"

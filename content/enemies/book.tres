@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/content/enemy_def.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "book"
+order = 10
+name = "魔书"
+sprite = "actor.enemy.book"
+hp = 12.0
+hp_per_level = 0.0
+speed = 48.0
+damage = 8.0
+radius = 6.0
+xp = 1
+knockback_resist = 0.0
+freeze_immune = false
+boss = false
+behavior = "chase"
+chest = false
