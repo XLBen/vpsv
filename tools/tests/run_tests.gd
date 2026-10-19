@@ -43,7 +43,7 @@ func _process(_d: float) -> bool:
 	save.persist = false
 	save.reset_memory()
 	seed(12345)
-	for t in ["test_xp", "test_stats", "test_powerup_price", "test_save_roundtrip", "test_parser", "test_runner", "test_cg", "test_game", "test_render", "test_strike"]:
+	for t in ["test_xp", "test_stats", "test_powerup_price", "test_save_roundtrip", "test_parser", "test_runner", "test_cg", "test_game", "test_render", "test_strike", "test_bounds_and_pickups"]:
 		print("· ", t)
 		call(t)
 	print("通过 %d，失败 %d" % [passed, failed])
@@ -301,4 +301,26 @@ func test_strike() -> void:
 	check(e.hp < 1e9 and is_equal_approx(1e9 - e.hp, whip.damage()), "窗口内每个敌人只命中一次")
 	g.projectiles.update(0.05)
 	check(s.dead and s2.dead and g.projectiles.strikes.is_empty(), "判定结束后被移除")
+	g.queue_free()
+
+
+## 走廊关卡：怪物也被限制在走廊内；宝石被吸起时先向外弹一下再飞向玩家。
+func test_bounds_and_pickups() -> void:
+	var g = Game.new()
+	root.add_child(g)
+	g.setup("lorenzo", "library")
+	g.spawning = false
+	var band: float = g.stage.bounded_height * 0.5
+	var def: Resource = root.get_node("Registry").enemy("book")
+	var e = g.enemies.spawn(def, g.player.position + Vector2(40, -band - 60.0))
+	g.enemies.update(0.05)
+	check(absf(e.pos.y) <= band, "书库：怪物被限制在走廊内（y=%.0f，边界 %.0f）" % [e.pos.y, band])
+	var it = g.pickups.drop("gem", g.player.position + Vector2(20, 0), 1.0)
+	var d0: float = it.pos.distance_to(g.player.position)
+	g.pickups.update(0.016)
+	check(it.pulled and it.pos.distance_to(g.player.position) > d0, "宝石被吸起的瞬间先向外弹")
+	var before: float = g.run.xp
+	for i in 60:
+		g.pickups.update(0.016)
+	check(it.dead and g.run.xp > before, "随后飞回并被拾取")
 	g.queue_free()

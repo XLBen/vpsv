@@ -6,6 +6,11 @@ const SheetBatch := preload("res://scripts/render/sheet_batch.gd")
 const MAX_GEMS := 400
 const PICK_RADIUS := 10.0
 const BASE_MAGNET := 30.0
+const PULL_KICK := -70.0        # 被吸起的瞬间先向外弹一下（速度为负 = 背离玩家），再加速飞回
+const PULL_ACCEL := 900.0
+const PULL_MAX := 420.0
+const DROP_HOP := 0.22          # 掉落时的小跳时长（秒）
+const SPARK_COLORS := {"pickup.gem.blue": "sky", "pickup.gem.green": "lime", "pickup.gem.red": "red"}
 
 
 class Item:
@@ -129,9 +134,9 @@ func update(dt: float) -> void:
 			continue
 		var d := to.length()
 		if it.attract and not it.pulled and d < magnet:
-			it.pulled = true
+			_pull(it)
 		if it.pulled:
-			it.sp = minf(400.0, it.sp + 700.0 * dt)
+			it.sp = minf(PULL_MAX, it.sp + PULL_ACCEL * dt)
 			if d > 0.01:
 				it.pos += to / d * minf(d, it.sp * dt)
 				d = it.pos.distance_to(ppos)
@@ -139,17 +144,23 @@ func update(dt: float) -> void:
 			it.dead = true
 			if it.kind == "gem":
 				_gem_count -= 1
+				game.vfx.burst(ppos + Vector2(0, -8), 2, SPARK_COLORS.get(it.sprite, "sky"))
 			game.collect(it)
 	_update_props(dt)
 	_compact()
 	_render(game.view_rect().grow(32.0))
 
 
+func _pull(it: Item) -> void:
+	it.pulled = true
+	it.sp = PULL_KICK
+
+
 ## 吸尘器 / 华美之月：吸取全部宝石。
 func vacuum() -> void:
 	for it: Item in items:
-		if it.kind == "gem":
-			it.pulled = true
+		if it.kind == "gem" and not it.pulled:
+			_pull(it)
 
 
 # ------------------------------------------------------------ 光源
@@ -237,6 +248,9 @@ func _render(view: Rect2) -> void:
 		var b = it.batch
 		var c: Dictionary = b.info.clip("idle")
 		var bob := Vector2(0, roundf(sin(it.age * 4.0 + it.pos.x) * 1.0)) if it.kind != "gem" else Vector2.ZERO
+		if it.age < DROP_HOP and not it.pulled:
+			# 刚掉落：向上弹起再落地的小跳
+			bob.y -= roundf(sin(it.age / DROP_HOP * PI) * 6.0)
 		# 同 b.info.frame_at("idle", …)，内联省去一次查表
 		var fi := int((it.age + it.pos.y * 0.05) * float(c.fps))
 		var nf: int = c.frames

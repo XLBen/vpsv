@@ -9,3 +9,9 @@ art-studio/dist/
 # 系统 / 本地
 .DS_Store
 .claude/settings.local.json
+
+# Claude Code 本地调度锁
+.claude/scheduled_tasks.lock
+
+# 导出产物
+build/

@@ -21,6 +21,9 @@ extends SceneTree
 ##   --lab=whip:8,garlic:1  装备的武器与等级（替换角色初始武器）
 ##   --lab-move=still       玩家移动方式：still 原地 · right 匀速向右 · circle 绕圈
 ##   --lab-hp=1e9           木桩血量（设小一些可以检查死亡效果，死掉的木桩 0.5 秒后补上）
+## 难度检查：
+##   --bot=kite             像人一样走位：躲开怪群、安全时去捡宝石和宝箱（默认 random 随机走位）
+##   --log                  每分钟打印一行：等级、生命、同屏怪数、击杀、武器
 
 var app: Node
 var secs := 120.0
@@ -54,6 +57,10 @@ var lab := []
 var lab_move := "still"
 var lab_hp := 1e9
 var _slots: Array = []           # [相对玩家的位置, 敌人, 空缺计时]
+var bot := "random"
+var log_minutes := false
+var _log_min := 0
+var _wander := Vector2.RIGHT
 var _win_ms := PackedFloat32Array()   # --profile：本分钟的帧耗时
 var _win_sys := {}                    # --profile：本分钟各系统耗时之和（微秒）
 var _win_min := -1
@@ -105,6 +112,10 @@ func _initialize() -> void:
 			lab_move = v
 		elif a.begins_with("--lab-hp="):
 			lab_hp = float(v)
+		elif a.begins_with("--bot="):
+			bot = v
+		elif a == "--log":
+			log_minutes = true
 	app = load("res://main.tscn").instantiate()
 	root.add_child(app)
 
@@ -172,7 +183,8 @@ func _process(delta: float) -> bool:
 
 	if not lab.is_empty():
 		_update_lab(game, delta)
-	if not burst.is_empty() and game.run.time >= burst[0] + _burst_next and _burst_imgs.size() < int(burst[2]):
+	# 暂停（升级、宝箱）期间不连拍，否则会连续拍下同一帧
+	if not burst.is_empty() and not game.paused and game.run.time >= burst[0] + _burst_next and _burst_imgs.size() < int(burst[2]):
 		_burst_imgs.append(root.get_texture().get_image())
 		_burst_next += burst[1]
 		if _burst_imgs.size() == int(burst[2]):
@@ -180,8 +192,14 @@ func _process(delta: float) -> bool:
 
 	# 随机走位
 	dir_t -= delta
-	if not lab.is_empty():
+	if not lab.is_empty() or bot == "kite":
 		dir_t = 1.0
+	if bot == "kite" and lab.is_empty():
+		_kite(game, delta)
+	if log_minutes and game.run.time >= (_log_min + 1) * 60.0:
+		_log_min += 1
+		print("[%2d:00] lvl=%d hp=%d/%d enemies=%d kills=%d  %s" % [_log_min, game.run.level, int(game.player.hp), int(game.stats.max_hp()),
+			game.enemies.alive_count(), game.run.kills, " ".join(game.weapons.map(func(w): return "%s%d" % [w.def.id, w.level]))])
 	if dir_t <= 0.0:
 		dir_t = randf_range(0.8, 2.0)
 		for a in ["move_left", "move_right", "move_up", "move_down"]:
@@ -239,6 +257,10 @@ func _process(delta: float) -> bool:
 			game.pickups.items.size(), levelups, chests, int(game.run.gold)])
 		print("weapons=", game.weapons.map(func(w): return "%s:%d dmg=%d" % [w.def.id, w.level, int(w.damage_done)]))
 		print("passives=", game.passives)
+		var hurt: Dictionary = game.player.damage_by
+		var keys := hurt.keys()
+		keys.sort_custom(func(a, b): return hurt[a] > hurt[b])
+		print("hurt_by=", ", ".join(keys.slice(0, 5).map(func(k): return "%s %d" % [k, int(hurt[k])])))
 		for k in game.profile:
 			print("  %-12s avg %.2f ms  max %.2f ms" % [k, game.profile[k][0] / 1000.0 / maxf(1.0, frames), game.profile[k][1] / 1000.0])
 		samples.sort()
@@ -341,3 +363,48 @@ func _save_burst(path: String) -> void:
 	sheet.resize(sheet.get_width() * 2, sheet.get_height() * 2, Image.INTERPOLATE_NEAREST)
 	sheet.save_png(path)
 	print("saved ", path)
+
+
+# ------------------------------------------------------------ 走位机器人（难度检查）
+
+## 只躲贴近的怪（45px 内，按距离加权的斥力，首领加倍）；其余时间朝宝石最密的方向扫过去，
+## 这更接近真人的玩法（在怪群边缘绕圈收宝石），用来判断难度是否合理。
+func _kite(game: Node, dt: float) -> void:
+	for a in ["move_left", "move_right", "move_up", "move_down"]:
+		Input.action_release(a)
+	var p: Vector2 = game.player.position
+	var away := Vector2.ZERO
+	var danger := 0.0
+	for e in game.enemies.query(p, 60.0):
+		if not e.alive():
+			continue
+		var d: Vector2 = p - e.pos
+		var l := maxf(4.0, d.length())
+		var w := clampf((45.0 - l) / 30.0, 0.0, 1.0) * (3.0 if e.boss else 1.0)
+		away += d / l * w
+		danger += w
+	# 宝石密度：200px 内每颗宝石按 1/距离 给一个吸引
+	var goal := Vector2.ZERO
+	for it in game.pickups.items:
+		if it.dead:
+			continue
+		var d: Vector2 = it.pos - p
+		var l := d.length()
+		if l < 200.0 and l > 1.0:
+			goal += d / l * (1.0 / maxf(20.0, l)) * (4.0 if it.kind == "chest" else 1.0)
+	goal = goal.normalized() if goal.length() > 0.0001 else Vector2.ZERO
+	_wander = _wander.rotated(randf_range(-1.5, 1.5) * dt).normalized()
+	if game.stage.bounded_height > 0.0:
+		# 走廊关卡：像真人一样始终朝一个方向跑，不来回游走
+		_wander = Vector2(signf(_wander.x) if _wander.x != 0.0 else 1.0, 0.0) * 2.5
+	var hp_ratio: float = game.player.hp / game.stats.max_hp()
+	var mv := away * (2.0 + (1.0 - hp_ratio) * 2.0) + goal * (1.0 if danger < 1.0 else 0.25) + _wander * 0.3
+	# 朝向型武器（飞刀等按移动方向出手）：安全时每隔一会儿转身朝最近的怪走一小步
+	if danger < 0.5 and fmod(game.run.time, 1.5) < 0.35:
+		var t = game.enemies.nearest(p, 160.0)
+		if t != null:
+			mv = (t.pos - p).normalized()
+	if game.stage.bounded_height > 0.0:
+		var h: float = game.stage.bounded_height * 0.5
+		mv.y -= clampf((p.y - (h - 40.0)) / 30.0, 0.0, 1.0) - clampf((-(h - 40.0) - p.y) / 30.0, 0.0, 1.0)
+	game.player.input_override = mv.limit_length(1.0) if mv.length() > 0.2 else Vector2.ZERO

@@ -16,6 +16,7 @@ var invuln := 0.0
 var shield := 0.0                 # 桂冠护盾剩余时间
 var hurt_flash := 0.0
 var input_override := Vector2.ZERO   # 触屏摇杆
+var damage_by := {}               # 伤害来源（怪物 id）→ 本局累计受到的伤害（调难度用）
 var _sprite: AnimatedSprite2D
 var _mat: ShaderMaterial
 
@@ -73,6 +74,8 @@ func hurt(amount: float, _source: Object = null) -> void:
 		return
 	var dmg := maxf(1.0, amount - game.stats.get_stat("armor"))
 	hp -= dmg
+	var src: String = _source.id if _source != null and "id" in _source else "?"
+	damage_by[src] = damage_by.get(src, 0.0) + dmg
 	invuln = INVULN
 	hurt_flash = 0.35
 	game.camera_shake(3.0)

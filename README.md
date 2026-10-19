@@ -60,12 +60,26 @@ Godot 4.7 的类吸血鬼幸存者项目。画面是 640×360 的星露谷式像
 
 自动试玩的全部参数（截图、指定角色关卡、直接给武器等）见 `tools/autoplay.gd` 文件头。测试与自动试玩都不会写入真实存档。
 
+**检查难度**：`--bot=kite` 用像真人一样的走位（躲开贴近的怪、扫宝石、走廊里一直朝一个方向跑），`--log` 每分钟打印等级、生命、怪数与武器，结束时打印受到伤害最多的怪物。
+
+```bash
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . --fixed-fps 20 -s res://tools/autoplay.gd -- --bot=kite --log --seconds=1800 --character=imele --stage=library
+```
+
 **检查武器手感**：游戏中按 F3 显示判定框。也可以用武器实验室：不刷怪，只摆一片木桩，连拍拼成一张联系表。
 
 ```bash
 /Applications/Godot.app/Contents/MacOS/Godot --path . --fixed-fps 60 -s res://tools/autoplay.gd -- --lab=whip:8 --lab-move=right --hitbox --burst=0.28:0.034:12 --seconds=0.8 --shot=/tmp/whip.png
 ```
 
-## 导出注意
+## 导出
 
-`assets/manifest.json`、`assets/generated/motion/*.json`、`content/audio.json`、`content/dialogue/*.vsd` 是非资源文件。导出时要在导出预设的「过滤器 → 非资源文件」里加入 `*.json, *.vsd`。
+`export_presets.cfg` 已有 macOS 和 Windows 两个预设：
+- 已包含非资源文件 `*.json, *.vsd`（素材清单、动效曲线、音效规则、手感参数、剧本）。
+- 已排除 `tools/` 与 `art-studio/`。
+
+打完整安装包需要先在 Godot 编辑器里安装导出模板。只打数据包（`.pck`）不需要模板：
+
+```bash
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path . --export-pack "macOS" build/vpsy.pck
+```

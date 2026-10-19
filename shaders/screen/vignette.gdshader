@@ -1,4 +1,5 @@
-// 局内屏幕效果：受击时四角短暂泛红、低血量时心跳暗角、全屏冻结时冰蓝色调。
+// 局内屏幕效果：受击时四角短暂泛红、低血量时心跳暗角、全屏冻结时冰蓝色调、
+// 死神降临后从四周缓缓涌入的黑紫色雾（reaper：0..1 渐入）。
 // 只作用于屏幕最外圈，强度克制，避免遮挡战场；按 4 像素格量化保持像素风。
 shader_type canvas_item;
 #include "res://shaders/shared/pixel.gdshaderinc"
@@ -6,6 +7,8 @@ shader_type canvas_item;
 uniform float hurt = 0.0;          // 0..1
 uniform float low_hp = 0.0;        // 0..1（血量越低越大）
 uniform float freeze = 0.0;        // 0/1
+uniform float reaper = 0.0;        // 0..1：死神黑雾强度
+uniform vec4 fog_color : source_color = vec4(0.11, 0.07, 0.15, 1.0);
 uniform vec4 hurt_color : source_color = vec4(0.62, 0.157, 0.208, 1.0);
 uniform vec4 freeze_color : source_color = vec4(0.455, 0.765, 0.91, 1.0);
 
@@ -22,6 +25,16 @@ void fragment() {
 	vec4 c = vec4(hurt_color.rgb, a);
 	if (freeze > 0.5) {
 		c = vec4(freeze_color.rgb, max(a, 0.12 + edge * 0.25));
+	}
+	if (reaper > 0.0) {
+		// 黑雾：比受击暗角更深入画面（约 1/4 屏），边缘被缓慢流动的噪声侵蚀
+		float reach = min(edge_d.x / screen.x, edge_d.y / screen.y) * 4.0;
+		float n = value_noise(cell / 24.0 + vec2(TIME * 0.35, -TIME * 0.2));
+		float fog = clamp((1.0 - reach) * 1.3 - n * 0.6, 0.0, 1.0);
+		fog = posterize(fog, 4.0) * reaper;
+		if (fog > c.a) {
+			c = vec4(fog_color.rgb, fog * 0.85);
+		}
 	}
 	COLOR = c;
 }

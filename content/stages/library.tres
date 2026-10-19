@@ -9,7 +9,7 @@ name = "镶嵌书库"
 desc = "一条横向无尽的长廊，上下无路可逃。"
 tileset = "tile.library"
 light_source = "prop.candelabra"
-bounded_height = 220.0
+bounded_height = 280.0
 duration = 1800.0
 light_density = 0.8
 max_enemies = 400
@@ -29,22 +29,22 @@ drops = {
 order = 1
 waves = Array[Dictionary]([{
 "enemies": ["book"],
-"min": 20,
-"interval": 1.0,
+"min": 15,
+"interval": 1.2,
 "boss": ""
 }, {
-"enemies": ["book", "ghost"],
-"min": 30,
+"enemies": ["book"],
+"min": 25,
 "interval": 1.0,
 "boss": "glowing_bat"
 }, {
-"enemies": ["skull"],
-"min": 40,
-"interval": 0.5,
+"enemies": ["book", "skull"],
+"min": 35,
+"interval": 0.75,
 "boss": ""
 }, {
 "enemies": ["skull", "book"],
-"min": 50,
+"min": 45,
 "interval": 0.5,
 "boss": "glowing_bat"
 }, {

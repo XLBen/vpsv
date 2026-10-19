@@ -157,6 +157,8 @@ func update(dt: float) -> void:
 	var far := view.size.length() * 0.5 + 120.0
 	var kdecay := exp(-_kb_decay * dt)
 	var all_frozen := freeze_all > 0.0
+	# 纵向有边界的关卡（书库）：怪物和玩家一样被限制在走廊内，不能穿墙从上下方贴脸
+	var band: float = game.stage.bounded_height * 0.5 - 8.0 if game.stage.bounded_height > 0.0 else -1.0
 
 	for e: Enemy in list:
 		e.anim_t += dt
@@ -209,6 +211,8 @@ func update(dt: float) -> void:
 		# 分离隔帧轮流做（一半敌人一帧），推力加倍补偿，视觉上无差别
 		if bc != B_WALL and bc != B_REAPER and (e.uid + _frame) % 2 == 0:
 			_separate(e, 2.0, cells, inv)
+		if band > 0.0 and bc != B_SWARM and bc != B_REAPER:
+			e.pos.y = clampf(e.pos.y, -band, band)
 		if d < e.radius + pr - 1.0 and not frozen:
 			game.player.hurt(e.damage, e)
 
