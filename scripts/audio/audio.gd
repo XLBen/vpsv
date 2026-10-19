@@ -5,7 +5,10 @@ extends Node
 const CONFIG := "res://content/audio.json"
 const POOL := 24
 
-var rules := {}
+var rules := {}:
+	set(v):
+		rules = v
+		_rule_cache.clear()
 var sfx_volume := 1.0:
 	set(v):
 		sfx_volume = v
@@ -20,6 +23,7 @@ var _next := 0
 var _last := {}
 var _playing := {}       # id -> 当前同时播放数
 var _combo := {}         # id -> [次数, 最后时间]，用于连拾音阶
+var _rule_cache := {}    # id -> 合并好的规则（命中音效每帧可能播放几十次，不必每次重新合并）
 var _music: AudioStreamPlayer
 var _sfx_bus := 0
 var _music_bus := 0
@@ -55,12 +59,16 @@ func _ensure_bus(name: String) -> int:
 
 
 func _rule(id: String) -> Dictionary:
+	var cached = _rule_cache.get(id)
+	if cached != null:
+		return cached
 	var r: Dictionary = rules.get("default", {}).duplicate()
 	# 支持前缀规则，例如 "sfx.weapon.*"
 	for key: String in rules:
 		if key.ends_with("*") and id.begins_with(key.trim_suffix("*")):
 			r.merge(rules[key], true)
 	r.merge(rules.get(id, {}), true)
+	_rule_cache[id] = r
 	return r
 
 

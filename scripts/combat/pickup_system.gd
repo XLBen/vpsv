@@ -20,6 +20,8 @@ class Item:
 	var age := 0.0
 	var dead := false
 	var data := {}                   # 宝箱：{boss: EnemyDef}
+	var batch: Node = null           # 渲染批次缓存（换素材时清空）
+	var batch_sprite := ""
 
 
 class Prop:
@@ -115,11 +117,16 @@ func roll_light_drop(pos: Vector2) -> void:
 func update(dt: float) -> void:
 	var ppos: Vector2 = game.player.position
 	var magnet: float = BASE_MAGNET * game.stats.get_stat("magnet")
+	var reach := maxf(magnet, PICK_RADIUS)
+	var reach2 := reach * reach
 	for it: Item in items:
 		if it.dead:
 			continue
 		it.age += dt
 		var to := ppos - it.pos
+		# 远处静止的宝石占绝大多数：先用平方距离排除，省去开方
+		if not it.pulled and to.length_squared() >= reach2:
+			continue
 		var d := to.length()
 		if it.attract and not it.pulled and d < magnet:
 			it.pulled = true
@@ -224,9 +231,15 @@ func _render(view: Rect2) -> void:
 	for it: Item in items:
 		if not view.has_point(it.pos):
 			continue
-		var b = _batch(it.sprite)
+		if it.batch_sprite != it.sprite:
+			it.batch = _batch(it.sprite)
+			it.batch_sprite = it.sprite
+		var b = it.batch
 		var c: Dictionary = b.info.clip("idle")
 		var bob := Vector2(0, roundf(sin(it.age * 4.0 + it.pos.x) * 1.0)) if it.kind != "gem" else Vector2.ZERO
-		b.add(it.pos + bob, false, b.info.frame_at("idle", it.age + it.pos.y * 0.05), int(c.row))
+		# 同 b.info.frame_at("idle", …)，内联省去一次查表
+		var fi := int((it.age + it.pos.y * 0.05) * float(c.fps))
+		var nf: int = c.frames
+		b.add(it.pos + bob, false, fi % nf if c.loop else mini(fi, nf - 1), int(c.row))
 	for b in batches.values():
 		b.commit()

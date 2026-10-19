@@ -138,8 +138,12 @@ func update(dt: float) -> void:
 		z.radius *= 1.0 + z.grow * dt
 		if z.follow > 0.0:
 			z.pos = z.pos.move_toward(game.player.position, z.follow * dt)
-		for e in game.enemies.query(z.pos, z.radius + 32.0):
-			if e.alive() and e.pos.distance_to(z.pos) < z.radius + e.radius and game.enemies.can_hit(e, z, z.hit_delay):
+		# 网格按身体中心索引、区域按脚底判定，所以查询要留出「身体中心偏移 + 半径」的余量。
+		# 余量取实际出现过的最大值（不超过原来的 32），结果与原来完全一致，但查询的格子少很多。
+		var zp := z.pos
+		for e in game.enemies.query(zp, z.radius + minf(32.0, game.enemies.reach)):
+			# 先做最便宜的距离判定（绝大多数候选在这里被排除），再看存活与受击间隔
+			if e.pos.distance_to(zp) < z.radius + e.radius and e.dying < 0.0 and not e.dead and game.enemies.can_hit(e, z, z.hit_delay):
 				if z.on_hit.is_valid():
 					z.on_hit.call(z, e)
 				else:
@@ -201,10 +205,11 @@ func _bounced(p: Proj) -> void:
 
 func _collide(p: Proj) -> void:
 	for e in game.enemies.query(p.pos, p.radius + 16.0):
-		if not e.alive():
-			continue
+		# 距离在前（与 e.center() 同一算式，内联省去调用），存活在后
 		var rr: float = e.radius + p.radius
-		if e.center().distance_squared_to(p.pos) >= rr * rr:
+		if (e.pos + Vector2(0.0, e.hy)).distance_squared_to(p.pos) >= rr * rr:
+			continue
+		if e.dying >= 0.0 or e.dead:
 			continue
 		var t: float = game.run.time
 		if p.hits.has(e) and (p.hit_delay <= 0.0 or t < float(p.hits[e])):

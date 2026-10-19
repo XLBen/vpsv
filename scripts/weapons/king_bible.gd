@@ -46,8 +46,9 @@ func update(dt: float) -> void:
 		var bp: Vector2 = _books[i].position
 		game.debug.circle(bp, hit_r, 0.02)
 		for e in game.enemies.query(bp, hit_r + 16.0):
-			if e.alive() and e.center().distance_to(bp) < hit_r + e.radius and game.enemies.can_hit(e, self, def.hit_delay):
-				hit(e, -1.0, (e.center() - center).normalized())
+			var ec: Vector2 = e.pos + Vector2(0.0, e.hy)    # = e.center()
+			if ec.distance_to(bp) < hit_r + e.radius and e.alive() and game.enemies.can_hit(e, self, def.hit_delay):
+				hit(e, -1.0, (ec - center).normalized())
 		game.pickups.hit_props(bp, hit_r)
 
 

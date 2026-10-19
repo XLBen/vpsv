@@ -14,9 +14,12 @@ var game: Node
 var _white: Texture2D
 var _shaders := {}
 var _numbers: Array = []        # [pos, text, life, max, color, key, value, crit]
+var _number_of := {}            # key → 该怪最新的伤害数字（合并时直接取，不必扫描全部数字）
 var _particles: Array = []      # [pos, vel, life, max, color, gravity]
-var _oneshots: Array = []       # [node, life, max, follow, offset]
+var _oneshots: Array = []       # [node, life, max, follow, offset, 是否逐帧传 progress]
 var _sparks := 0
+var _spark_mats := {}           # 色带 id → 命中火花共用的材质（火花着色器没有逐个实例的参数）
+var _gold := Color.WHITE
 var _layer_top: Node2D
 
 
@@ -48,6 +51,7 @@ func setup(g: Node) -> void:
 	Layers.put(_layer_top, Layers.NUMBERS)
 	add_child(_layer_top)
 	_layer_top.draw.connect(_draw_top)
+	_gold = Assets.color("gold")
 
 
 func shader(path: String) -> Shader:
@@ -105,7 +109,7 @@ func quad(shader_path: String, size: Vector2, ramp_id := "", params := {}) -> Sh
 func one_shot(node: Node2D, pos: Vector2, life: float, parent: Node = null, follow: Node2D = null) -> Node2D:
 	node.position = pos.round()
 	(parent if parent else self).add_child(node)
-	_oneshots.append([node, life, life, follow, pos - follow.position if follow else Vector2.ZERO])
+	_oneshots.append([node, life, life, follow, pos - follow.position if follow else Vector2.ZERO, true])
 	return node
 
 
@@ -114,12 +118,22 @@ func hit_spark(pos: Vector2, dir: Vector2, sprite_id: String, ramp_id: String) -
 	if sprite_id == "" or not Feel.v("hit_spark", true) or _sparks >= int(Feel.f("spark_cap", 48)) or not Assets.has(sprite_id):
 		return
 	var s := sprite(sprite_id)
-	s.material = material(GLOW, ramp_id if ramp_id != "" else "ramp.steel", {"glow": 0.0})
+	var ramp := ramp_id if ramp_id != "" else "ramp.steel"
+	var m = _spark_mats.get(ramp)
+	if m == null:
+		m = material(GLOW, ramp, {"glow": 0.0})
+		_spark_mats[ramp] = m
+	s.material = m
 	s.rotation = dir.angle() if dir != Vector2.ZERO else randf() * TAU
 	s.flip_v = randf() < 0.5
 	_sparks += 1
 	one_shot(s, pos, Assets.sheet(sprite_id).clip_length("idle"))
-	s.tree_exiting.connect(func(): _sparks -= 1)
+	_oneshots.back()[5] = false      # 共用材质，且火花着色器不用 progress
+	s.tree_exiting.connect(_on_spark_exit)
+
+
+func _on_spark_exit() -> void:
+	_sparks -= 1
 
 
 func release(node: Node2D) -> void:
@@ -133,16 +147,19 @@ func damage_number(key: int, pos: Vector2, amount: float, crit := false) -> void
 		return
 	var life := Feel.f("number_life", 0.6)
 	var merge := Feel.f("number_merge", 0.1)
-	for n in _numbers:
-		if n[5] == key and n[3] - n[2] < merge:
-			n[6] += amount
-			n[1] = str(int(roundf(n[6])))
-			n[7] = n[7] or crit
-			n[4] = Assets.color("gold") if n[7] else Color.WHITE
-			return
+	# 同一只怪在合并窗口内至多一个数字（寿命大于窗口），所以只需看它最新的那个
+	var n = _number_of.get(key)
+	if n != null and n[2] > 0.0 and n[3] - n[2] < merge:
+		n[6] += amount
+		n[1] = str(int(roundf(n[6])))
+		n[7] = n[7] or crit
+		n[4] = _gold if n[7] else Color.WHITE
+		return
 	if _numbers.size() >= int(Feel.f("number_cap", 80)):
 		return
-	_numbers.append([pos + Vector2(randf_range(-3, 3), 0), str(int(roundf(amount))), life, life, Assets.color("gold") if crit else Color.WHITE, key, amount, crit])
+	n = [pos + Vector2(randf_range(-3, 3), 0), str(int(roundf(amount))), life, life, _gold if crit else Color.WHITE, key, amount, crit]
+	_numbers.append(n)
+	_number_of[key] = n
 
 
 func float_text(pos: Vector2, text: String, color: Color) -> void:
@@ -169,25 +186,41 @@ func debris(pos: Vector2, col: Color, n: int) -> void:
 
 
 func update(dt: float) -> void:
+	# 原地压缩（不用 filter + lambda，免得每帧分配新数组、逐个调用闭包）
+	var j := 0
 	for n in _numbers:
 		n[2] -= dt
-	_numbers = _numbers.filter(func(n): return n[2] > 0.0)
+		if n[2] > 0.0:
+			_numbers[j] = n
+			j += 1
+		elif is_same(_number_of.get(n[5]), n):
+			_number_of.erase(n[5])
+	_numbers.resize(j)
 	var drag := exp(-6.0 * dt)       # 与帧率无关的阻尼
+	j = 0
 	for p in _particles:
 		p[0] += p[1] * dt
 		p[1] = Vector2(p[1].x * drag, p[1].y * drag + p[5] * dt) if p[5] > 0.0 else p[1] * drag
 		p[2] -= dt
-	_particles = _particles.filter(func(p): return p[2] > 0.0)
+		if p[2] > 0.0:
+			_particles[j] = p
+			j += 1
+	_particles.resize(j)
+	j = 0
 	for o in _oneshots:
 		o[1] -= dt
 		var node: Node2D = o[0]
 		if is_instance_valid(node) and o[3] != null and is_instance_valid(o[3]):
 			node.position = ((o[3] as Node2D).position + o[4]).round()
-		if is_instance_valid(node) and node.material is ShaderMaterial:
+		if o[5] and is_instance_valid(node) and node.material is ShaderMaterial:
 			(node.material as ShaderMaterial).set_shader_parameter("progress", 1.0 - o[1] / o[2])
-		if o[1] <= 0.0 and is_instance_valid(node):
-			node.queue_free()
-	_oneshots = _oneshots.filter(func(o): return o[1] > 0.0)
+		if o[1] <= 0.0:
+			if is_instance_valid(node):
+				node.queue_free()
+		else:
+			_oneshots[j] = o
+			j += 1
+	_oneshots.resize(j)
 	_layer_top.queue_redraw()
 
 

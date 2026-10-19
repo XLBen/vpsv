@@ -178,8 +178,9 @@ func hit_rect(r: Rect2, kdir: Vector2) -> void:
 func hit_circle(c: Vector2, r: float, dmg := -1.0, kb := true) -> void:
 	game.debug.circle(c, r)
 	for e in game.enemies.query(c, r + 16.0):
-		if e.alive() and e.center().distance_to(c) < r + e.radius:
-			hit(e, dmg, (e.center() - c).normalized() if kb else Vector2.ZERO)
+		var ec: Vector2 = e.pos + Vector2(0.0, e.hy)    # = e.center()
+		if ec.distance_to(c) < r + e.radius and e.alive():
+			hit(e, dmg, (ec - c).normalized() if kb else Vector2.ZERO)
 	game.pickups.hit_props(c, r)
 
 

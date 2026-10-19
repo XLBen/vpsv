@@ -8,6 +8,13 @@ const Feel := preload("res://scripts/core/feel.gd")
 
 const DEATH_TIME := 0.75
 const HURT_TIME := 0.15
+# 行为编号（spawn 时由 behavior 字符串换算，主循环里比较整数而不是字符串）
+const B_CHASE := 0
+const B_SWARM := 1
+const B_WALL := 2
+const B_BOSS_CHARGE := 3
+const B_REAPER := 4
+const BEHAVIORS := {"swarm": B_SWARM, "wall": B_WALL, "boss_charge": B_BOSS_CHARGE, "reaper": B_REAPER}
 
 
 class Enemy:
@@ -36,6 +43,8 @@ class Enemy:
 	var dead := false                # 可以移除
 	var boss := false
 	var behavior := "chase"
+	var bcode := 0                   # behavior 对应的 B_* 编号
+	var batch: Node = null           # 渲染批次（首次渲染时缓存）
 	var state := 0
 	var timer := 0.0
 	var life := -1.0                 # >0 时到期自动消失（直线群、花墙）
@@ -60,12 +69,28 @@ var _frame := 0
 var _uid := 0
 var _hy := {}            # 素材 id → 身体中心偏移
 var _colors := {}        # 素材 id → 碎屑颜色
+var reach := 0.0         # 已生成的怪里，脚底到身体中心的距离 + 半径的最大值（贴地区域查询的余量用）
+var _sort_keys := PackedInt64Array()
+var _sort_tmp: Array = []
+# 手感参数：每局开始时读一次（feel.json 改完重开一局生效）
+var _flash := 0.11
+var _kb_impulse := 120.0
+var _kb_max := 260.0
+var _kb_decay := 14.0
+var _hitstop := 0.0
+var _tint_t := 0.05
 
 signal killed(enemy: Enemy)
 
 
 func setup(g: Node) -> void:
 	game = g
+	_flash = Feel.f("flash_white", 0.06) + Feel.f("flash_tint", 0.05)
+	_tint_t = Feel.f("flash_tint", 0.05)
+	_kb_impulse = Feel.f("knockback_impulse", 120.0)
+	_kb_max = Feel.f("knockback_max", 260.0)
+	_kb_decay = Feel.f("knockback_decay", 14.0)
+	_hitstop = Feel.f("hitstop", 0.0)
 
 
 func alive_count() -> int:
@@ -101,6 +126,8 @@ func spawn(def: Resource, pos: Vector2, opts := {}) -> Enemy:
 	e.timer = randf_range(3.0, 5.0)
 	for k: String in opts:
 		e.set(k, opts[k])
+	e.bcode = BEHAVIORS.get(e.behavior, B_CHASE)
+	reach = maxf(reach, absf(e.hy) + e.radius)
 	list.append(e)
 	Save.mark_seen("enemies", e.id)
 	return e
@@ -109,16 +136,27 @@ func spawn(def: Resource, pos: Vector2, opts := {}) -> Enemy:
 func update(dt: float) -> void:
 	_frame += 1
 	freeze_all = maxf(0.0, freeze_all - dt)
+	# 按身体中心建网格（与 grid.insert(e, e.center()) 相同，内联以省去每只怪的函数调用）
 	grid.clear()
+	var cells: Dictionary = grid.cells
+	var inv: float = grid.inv
+	var pool: Array = grid.pool
 	for e: Enemy in list:
-		if e.alive():
-			grid.insert(e, e.center())
+		if e.dying < 0.0 and not e.dead:
+			var c := e.pos + Vector2(0.0, e.hy)
+			var k := (floori(c.x * inv) << 32) + floori(c.y * inv)
+			var a = cells.get(k)
+			if a == null:
+				a = pool.pop_back() if not pool.is_empty() else []
+				cells[k] = a
+			a.append(e)
 
 	var ppos: Vector2 = game.player.position
 	var pr: float = game.player.radius
 	var view: Rect2 = game.view_rect()
 	var far := view.size.length() * 0.5 + 120.0
-	var kdecay := exp(-Feel.f("knockback_decay", 14.0) * dt)
+	var kdecay := exp(-_kb_decay * dt)
+	var all_frozen := freeze_all > 0.0
 
 	for e: Enemy in list:
 		e.anim_t += dt
@@ -134,33 +172,33 @@ func update(dt: float) -> void:
 			if e.life <= 0.0:
 				despawn(e)
 				continue
-		var frozen: bool = (freeze_all > 0.0 or e.freeze > 0.0) and not e.def.freeze_immune
+		var bc := e.bcode
+		var frozen: bool = (all_frozen or e.freeze > 0.0) and not e.def.freeze_immune
 		e.freeze = maxf(0.0, e.freeze - dt)
 
 		var to := ppos - e.pos
 		var d := to.length()
 		var dir := to / d if d > 0.001 else Vector2.ZERO
 		var v := Vector2.ZERO
-		match e.behavior:
-			"swarm":
-				v = e.dir * e.speed
-				if d > far * 1.6:
-					e.dead = true
-					continue
-			"wall":
-				var to_anchor := e.anchor - e.pos
-				if to_anchor.length() > 48.0:
-					v = to_anchor.normalized() * e.speed
-			"boss_charge":
-				v = _boss_charge(e, dir, dt)
-			"reaper":
-				v = dir * e.speed
-			_:
-				v = dir * e.speed
-				# 跑太远的普通敌人重新放到玩家前方屏幕外
-				if d > far and not e.boss:
-					e.pos = game.spawn_ring_pos(game.player.move_dir if game.player.moving else Vector2.ZERO)
-					continue
+		if bc == B_CHASE:
+			v = dir * e.speed
+			# 跑太远的普通敌人重新放到玩家前方屏幕外
+			if d > far and not e.boss:
+				e.pos = game.spawn_ring_pos(game.player.move_dir if game.player.moving else Vector2.ZERO)
+				continue
+		elif bc == B_SWARM:
+			v = e.dir * e.speed
+			if d > far * 1.6:
+				e.dead = true
+				continue
+		elif bc == B_WALL:
+			var to_anchor := e.anchor - e.pos
+			if to_anchor.length() > 48.0:
+				v = to_anchor.normalized() * e.speed
+		elif bc == B_BOSS_CHARGE:
+			v = _boss_charge(e, dir, dt)
+		else:
+			v = dir * e.speed
 		if frozen:
 			v = Vector2.ZERO
 		if absf(v.x) > 1.0:
@@ -169,8 +207,8 @@ func update(dt: float) -> void:
 		e.kb *= kdecay
 
 		# 分离隔帧轮流做（一半敌人一帧），推力加倍补偿，视觉上无差别
-		if e.behavior != "wall" and e.behavior != "reaper" and (e.uid + _frame) % 2 == 0:
-			_separate(e, 2.0)
+		if bc != B_WALL and bc != B_REAPER and (e.uid + _frame) % 2 == 0:
+			_separate(e, 2.0, cells, inv)
 		if d < e.radius + pr - 1.0 and not frozen:
 			game.player.hurt(e.damage, e)
 
@@ -178,43 +216,59 @@ func update(dt: float) -> void:
 	_sort_t -= dt
 	if _sort_t <= 0.0:
 		_sort_t = 0.1
-		list.sort_custom(func(a: Enemy, b: Enemy) -> bool: return a.pos.y < b.pos.y)
+		_sort_by_y()
 	_render(view.grow(48.0))
 
 
-func _separate(e: Enemy, strength := 1.0) -> void:
-	# 直接遍历 3×3 个格子，避免每个敌人分配查询数组
-	var cell: float = grid.cell
-	var c := e.center()
-	var cx := floori(c.x / cell)
-	var cy := floori(c.y / cell)
-	var cells: Dictionary = grid.cells
+## 直接遍历身体中心所在格子周围 3×3 个格子，推开重叠的同伴（推力计算内联，省去每对怪的函数调用）。
+func _separate(e: Enemy, strength: float, cells: Dictionary, inv: float) -> void:
+	var c := e.pos + Vector2(0.0, e.hy)
+	var cx := floori(c.x * inv)
+	var cy := floori(c.y * inv)
+	var er := e.radius
+	var boss := e.boss
+	var ep := e.pos
 	for gx in range(cx - 1, cx + 2):
+		var kx := gx << 32
 		for gy in range(cy - 1, cy + 2):
-			var bucket = cells.get(Vector2i(gx, gy))
+			var bucket = cells.get(kx + gy)
 			if bucket == null:
 				continue
 			for o: Enemy in bucket:
-				if o != e:
-					_push(e, o, strength)
+				if o == e:
+					continue
+				var diff := ep - o.pos
+				var dd := diff.length_squared()
+				var rr := er + o.radius
+				if dd >= rr * rr:
+					continue
+				if dd < 0.0001:
+					ep += Vector2(randf() - 0.5, randf() - 0.5)
+					continue
+				var dist := sqrt(dd)
+				var w := minf(1.0, o.radius / rr * 0.5 * strength)
+				if o.bcode == B_WALL:
+					w = 1.0
+				elif boss:
+					w *= 0.1
+				ep += diff / dist * (rr - dist) * w
+	e.pos = ep
 
 
-func _push(e: Enemy, o: Enemy, strength: float) -> void:
-	var diff := e.pos - o.pos
-	var dd := diff.length_squared()
-	var rr := e.radius + o.radius
-	if dd >= rr * rr:
+## 按脚底 y 排序（远处的先画）。键 = 量化到 1/1024 像素的 y 与当前下标拼成的整数，交给原生排序，
+## 比 sort_custom + lambda 快一个数量级。y 相同时保持上一次的先后（稳定排序），重叠的同 y 怪不会来回换层。
+func _sort_by_y() -> void:
+	var n := list.size()
+	if n < 2:
 		return
-	if dd < 0.0001:
-		e.pos += Vector2(randf() - 0.5, randf() - 0.5)
-		return
-	var dist := sqrt(dd)
-	var w := minf(1.0, o.radius / rr * 0.5 * strength)
-	if o.behavior == "wall":
-		w = 1.0
-	elif e.boss:
-		w *= 0.1
-	e.pos += diff / dist * (rr - dist) * w
+	_sort_keys.resize(n)
+	for i in n:
+		_sort_keys[i] = (int(floorf(list[i].pos.y * 1024.0)) << 20) | i
+	_sort_keys.sort()
+	_sort_tmp.assign(list)
+	for i in n:
+		list[i] = _sort_tmp[_sort_keys[i] & 0xFFFFF]
+	_sort_tmp.clear()
 
 
 func _boss_charge(e: Enemy, dir: Vector2, dt: float) -> Vector2:
@@ -245,17 +299,17 @@ func damage(e: Enemy, amount: float, kdir := Vector2.ZERO, kb := 0.0, source: Ob
 		return 0.0
 	var dealt := minf(amount, e.hp)
 	e.hp -= amount
-	e.flash = Feel.f("flash_white", 0.06) + Feel.f("flash_tint", 0.05)
+	e.flash = _flash
 	e.hurt_t = HURT_TIME
 	if kb > 0.0 and not e.boss:
-		e.kb = (e.kb + kdir * kb * Feel.f("knockback_impulse", 120.0) * (1.0 - e.kb_resist)).limit_length(Feel.f("knockback_max", 260.0))
+		e.kb = (e.kb + kdir * kb * _kb_impulse * (1.0 - e.kb_resist)).limit_length(_kb_max)
 	game.vfx.damage_number(e.uid, e.pos + Vector2(0, e.hy * 2.0 - 2.0), amount, crit)
 	var wdef: Resource = source.def if source != null and source.get("def") is Resource else null
 	if wdef != null:
 		game.vfx.hit_spark(e.center() - kdir * e.radius * 0.5, kdir, wdef.hit_fx, wdef.ramp)
 		if wdef.hit_shake > 0.0:
 			game.camera_shake(wdef.hit_shake)
-			game.hitstop(Feel.f("hitstop", 0.0))
+			game.hitstop(_hitstop)
 	Audio.play(wdef.hit_sfx if wdef != null and wdef.hit_sfx != "" else "sfx.enemy.hit")
 	# 统计按命中伤害计（与伤害数字一致，原版结算也如此）
 	if source != null and source.has_method("record_damage"):
@@ -347,11 +401,13 @@ func query(p: Vector2, r: float) -> Array:
 func nearest(p: Vector2, max_d: float, exclude: Array = []) -> Enemy:
 	var best: Enemy = null
 	var bd := max_d * max_d
+	var ex := not exclude.is_empty()
+	# alive() / center() 内联；排除表只在距离够近时才查（大多数调用没有排除表）
 	for e: Enemy in list:
-		if not e.alive() or e in exclude:
+		if e.dying >= 0.0 or e.dead:
 			continue
-		var d := p.distance_squared_to(e.center())
-		if d < bd:
+		var d := p.distance_squared_to(e.pos + Vector2(0.0, e.hy))
+		if d < bd and not (ex and e in exclude):
 			bd = d
 			best = e
 	return best
@@ -361,7 +417,7 @@ func in_view(margin := 0.0) -> Array:
 	var view: Rect2 = game.view_rect().grow(margin)
 	var out := []
 	for e: Enemy in list:
-		if e.alive() and view.has_point(e.center()):
+		if e.dying < 0.0 and not e.dead and view.has_point(e.pos + Vector2(0.0, e.hy)):
 			out.append(e)
 	return out
 
@@ -389,11 +445,13 @@ func _render(view: Rect2) -> void:
 	for b in batches.values():
 		b.begin()
 	var global_freeze := freeze_all > 0.0
-	var tint_t := Feel.f("flash_tint", 0.05)
+	var tint_t := _tint_t
 	for e: Enemy in list:
 		if not view.has_point(e.pos):
 			continue
-		var b = _batch(e.sprite)
+		if e.batch == null:
+			e.batch = _batch(e.sprite)
+		var b = e.batch
 		var info = b.info
 		var clip := "walk"
 		var t := e.anim_t
@@ -410,7 +468,10 @@ func _render(view: Rect2) -> void:
 			clip = "idle"
 			t = 0.0
 		var c: Dictionary = info.clip(clip)
-		var frame: int = info.frame_at(clip, t)
+		# 同 info.frame_at(clip, t)，内联省去一次查表
+		var fi := int(t * float(c.fps))
+		var nf: int = c.frames
+		var frame: int = fi % nf if c.loop else mini(fi, nf - 1)
 		# z：闪白（1 纯白 / 0.5 色调）+ 冻结 ×2 + 溶解种子 ×4（每只怪固定，溶解图案不闪）
 		var fl := 0.0
 		if e.flash > tint_t:

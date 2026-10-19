@@ -51,6 +51,7 @@ var _shake := 0.0
 ## 开发用：设为 true 后按系统统计每帧耗时（微秒），自动试玩 --profile 会打开。
 var profiling := false
 var profile := {}           # 系统 → [总耗时, 最大耗时]
+var profile_frame := {}     # 本帧各系统耗时（自动试玩按分钟汇总、定位尖峰用）
 var _t0 := 0
 var flash := 0.0
 var _hitstop := 0.0
@@ -131,6 +132,8 @@ func _process(delta: float) -> void:
 	flash = maxf(0.0, flash - dt)
 	var shake_on: bool = Save.settings().get("screen_shake", true)
 	cam.offset = Vector2(randf_range(-_shake, _shake), randf_range(-_shake, _shake)).round() if shake_on else Vector2.ZERO
+	if profiling:
+		profile_frame.clear()
 	if paused or finished:
 		return
 	if _hitstop > 0.0:
@@ -140,6 +143,7 @@ func _process(delta: float) -> void:
 	_t0 = Time.get_ticks_usec()
 	player.update(dt)
 	cam.position = player.position.round()
+	_mark("player")
 	if spawning:
 		spawner.update(dt)
 	_mark("spawner")
@@ -160,6 +164,7 @@ func _process(delta: float) -> void:
 		cleared = true
 	if run.pending_levels > 0 and not paused and not finished:
 		_open_level_up()
+		_mark("level_up")
 
 
 func _mark(name: String) -> void:
@@ -171,6 +176,7 @@ func _mark(name: String) -> void:
 	p[0] += d
 	p[1] = maxi(p[1], d)
 	profile[name] = p
+	profile_frame[name] = d
 	_t0 = now
 
 

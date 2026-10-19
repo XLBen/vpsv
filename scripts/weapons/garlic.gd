@@ -28,8 +28,9 @@ func update(dt: float) -> void:
 	var heal := float(param("heal", 0.0))
 	var any := false
 	for e in game.enemies.query(c, r + 16.0):
-		if e.alive() and e.center().distance_to(c) < r + e.radius:
-			hit(e, -1.0, (e.center() - c).normalized())
+		var ec: Vector2 = e.pos + Vector2(0.0, e.hy)    # = e.center()
+		if ec.distance_to(c) < r + e.radius and e.alive():
+			hit(e, -1.0, (ec - c).normalized())
 			any = true
 			if heal > 0.0:
 				game.player.hp = minf(game.stats.max_hp(), game.player.hp + heal)

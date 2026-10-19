@@ -12,7 +12,7 @@ extends SceneTree
 ##   --shot-chest=/abs/d.png     第一次宝箱演出结束时截图
 ##   --narrative-test       运行对话系统测试剧本后退出
 ##   --give=whip:8,garlic:8 开局直接给武器（可超过 6 把，用于检查特效）
-##   --profile              打印各系统每帧平均 / 最大耗时
+##   --profile              打印各系统每帧平均 / 最大耗时，并按分钟打印帧耗时分位数、各系统平均耗时与尖峰帧
 ##   --open-chest=5        第 3 秒直接打开一个宝箱（配合 --shot-chest 截演出）
 ##   --screen=shop          配合 --shot-title：先打开某个菜单（character_select / stage_select / shop / collection / settings / dialogue）
 ##   --hitbox               打开判定框调试层（游戏内按 F3 也可切换）
@@ -54,6 +54,10 @@ var lab := []
 var lab_move := "still"
 var lab_hp := 1e9
 var _slots: Array = []           # [相对玩家的位置, 敌人, 空缺计时]
+var _win_ms := PackedFloat32Array()   # --profile：本分钟的帧耗时
+var _win_sys := {}                    # --profile：本分钟各系统耗时之和（微秒）
+var _win_min := -1
+var _spikes := 0
 
 
 func _initialize() -> void:
@@ -223,6 +227,8 @@ func _process(delta: float) -> bool:
 	var now := Time.get_ticks_usec()
 	if last_us > 0 and game.run.time > 5.0:
 		samples.append((now - last_us) / 1000.0)
+		if profile:
+			_profile_window(game, (now - last_us) / 1000.0)
 	last_us = now
 	if not shots.is_empty() and game.run.time >= shots[0]:
 		_save(shot.get_basename() + "_%d.png" % int(shots[0]))
@@ -242,6 +248,43 @@ func _process(delta: float) -> bool:
 			_save(shot)
 		return true
 	return false
+
+
+## --profile：按分钟打印帧耗时分位数与各系统平均耗时（“其他”= 整帧减去各系统，即引擎与界面），
+## 并打印超过 50ms 的尖峰帧的分项，便于定位后期卡顿。
+func _profile_window(game: Node, ms: float) -> void:
+	var m := int(game.run.time / 60.0)
+	if m != _win_min and _win_ms.size() > 0:
+		var a := _win_ms.duplicate()
+		a.sort()
+		var parts := []
+		var total := 0.0
+		for k in _win_sys:
+			var avg: float = _win_sys[k] / 1000.0 / a.size()
+			total += avg
+			parts.append("%s %.2f" % [k, avg])
+		var mean := 0.0
+		for x in a:
+			mean += x
+		mean /= a.size()
+		print("min %2d enemies=%d items=%d  frame p50=%.1f p95=%.1f p99=%.1f max=%.1f  |  %s  other %.2f" % [
+			_win_min, game.enemies.alive_count(), game.pickups.items.size(), a[a.size() / 2], a[int(a.size() * 0.95)], a[int(a.size() * 0.99)], a[a.size() - 1],
+			"  ".join(parts), mean - total])
+		_win_ms.clear()
+		_win_sys.clear()
+	_win_min = m
+	_win_ms.append(ms)
+	var sys := 0.0
+	for k in game.profile_frame:
+		_win_sys[k] = _win_sys.get(k, 0) + game.profile_frame[k]
+		sys += game.profile_frame[k] / 1000.0
+	if ms > 50.0 and _spikes < 60:
+		_spikes += 1
+		var parts := []
+		for k in game.profile_frame:
+			if game.profile_frame[k] > 1000:
+				parts.append("%s %.1f" % [k, game.profile_frame[k] / 1000.0])
+		print("  spike t=%.1f %.1fms  %s  other %.1f" % [game.run.time, ms, " ".join(parts), ms - sys])
 
 
 # ------------------------------------------------------------ 武器实验室
