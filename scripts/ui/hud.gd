@@ -181,7 +181,9 @@ func _slot(pos: Vector2, icon: String, level: int, max_level: int, flash := 0.0)
 	draw_style_box(_slot_frame, Rect2(pos, Vector2(18, 18)))
 	var info = Assets.sheet(icon)
 	var f: int = info.frame_at("idle", _t + pos.x * 0.03)
-	draw_texture_rect_region(info.texture, Rect2(pos + Vector2(1, 1), Vector2(16, 16)), Rect2(Vector2(f * 16, 0), Vector2(16, 16)))
+	var c: Dictionary = info.clip("idle")
+	var src := Rect2(Vector2(f * info.size.x, int(c.row) * info.size.y), Vector2(info.size))
+	draw_texture_rect_region(info.texture, Rect2(pos + Vector2(1, 1), Vector2(16, 16)), src)
 	if level >= max_level:
 		draw_rect(Rect2(pos + Vector2(13, 13), Vector2(3, 3)), UiKit.color("gold"))
 	if flash > 0.0:

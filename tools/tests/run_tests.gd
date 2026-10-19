@@ -43,7 +43,7 @@ func _process(_d: float) -> bool:
 	save.persist = false
 	save.reset_memory()
 	seed(12345)
-	for t in ["test_xp", "test_stats", "test_powerup_price", "test_save_roundtrip", "test_parser", "test_runner", "test_cg", "test_game", "test_render", "test_strike", "test_bounds_and_pickups"]:
+	for t in ["test_xp", "test_stats", "test_powerup_price", "test_save_roundtrip", "test_parser", "test_runner", "test_cg", "test_game", "test_render", "test_strike", "test_bounds_and_pickups", "test_overrides"]:
 		print("· ", t)
 		call(t)
 	print("通过 %d，失败 %d" % [passed, failed])
@@ -324,3 +324,60 @@ func test_bounds_and_pickups() -> void:
 		g.pickups.update(0.016)
 	check(it.dead and g.run.xp > before, "随后飞回并被拾取")
 	g.queue_free()
+
+
+## 素材替换：帧文件夹（中文片段名、缺片段借用）、单张静态图、整体放大的图集（图标自动缩回原尺寸）、
+## 音效替换、认不出的文件名。在临时目录 user://overrides_test 里进行，不碰项目文件。
+func test_overrides() -> void:
+	var A: Node = root.get_node("Assets")
+	var dir := "user://overrides_test"
+	_rm_tree(dir)
+	DirAccess.make_dir_recursive_absolute(dir + "/怪物/actor.enemy.bat")
+	var solid := func(w: int, h: int, c: Color) -> Image:
+		var img := Image.create(w, h, false, Image.FORMAT_RGBA8)
+		img.fill(c)
+		return img
+	solid.call(32, 32, Color.RED).save_png(dir + "/怪物/actor.enemy.bat/行走_0.png")
+	solid.call(32, 32, Color.GREEN).save_png(dir + "/怪物/actor.enemy.bat/行走_1.png")
+	solid.call(32, 32, Color.BLUE).save_png(dir + "/怪物/actor.enemy.bat/待机.png")
+	solid.call(20, 30, Color.WHITE).save_png(dir + "/actor.enemy.zombie.png")
+	var icon_info = A.sheet("icon.weapon.whip")
+	var big := Image.create(icon_info.cols * 32, icon_info.rows * 32, false, Image.FORMAT_RGBA8)
+	big.fill(Color.YELLOW)
+	big.save_png(dir + "/icon.weapon.whip.png")
+	solid.call(8, 8, Color.WHITE).save_png(dir + "/actor.enemy.batt.png")
+	var wav := AudioStreamWAV.new()
+	wav.format = AudioStreamWAV.FORMAT_16_BITS
+	wav.mix_rate = 22050
+	wav.data = PackedByteArray([0, 0, 0, 0, 0, 0, 0, 0])
+	wav.save_to_wav(dir + "/sfx.pickup.gem.wav")
+	A.override_dirs = [dir]
+	A.reload()
+
+	var bat = A.sheet("actor.enemy.bat")
+	check(bat.replaced and bat.size == Vector2i(32, 32), "帧文件夹：按帧尺寸 32×32 拼成图集")
+	check(bat.clips.walk.frames == 2 and bat.clips.idle.frames == 1, "帧文件夹：中文片段名（行走 / 待机）")
+	check(bat.clips.hurt.frames == 1 and bat.clips.death.frames == 1, "帧文件夹：缺少的片段借用其它片段")
+	check(bat.pivot == Vector2i(16, 31), "帧文件夹：轴心保持在脚底中间 %s" % str(bat.pivot))
+	var zombie = A.sheet("actor.enemy.zombie")
+	check(zombie.replaced and zombie.size == Vector2i(20, 30) and zombie.clips.walk.frames == 1, "单张图：作为静态图用于所有片段")
+	var icon = A.sheet("icon.weapon.whip")
+	check(icon.replaced and icon.size == Vector2i(16, 16), "图标：放大一倍的图集自动缩回 16×16")
+	check(A.sound("sfx.pickup.gem") != null and A.overrides.has("sfx.pickup.gem"), "音效替换")
+	check(A.overrides._unknown.any(func(p): return p.ends_with("actor.enemy.batt.png")), "认不出的文件名被记录下来（供检查工具提示）")
+
+	_rm_tree(dir)
+	A.override_dirs = load("res://scripts/assets/overrides.gd").DIRS
+	A.reload()
+	check(not A.sheet("actor.enemy.bat").replaced, "删掉替换品后恢复原素材")
+
+
+func _rm_tree(path: String) -> void:
+	var d := DirAccess.open(path)
+	if d == null:
+		return
+	for f in d.get_files():
+		d.remove(f)
+	for sub in d.get_directories():
+		_rm_tree(path.path_join(sub))
+	DirAccess.remove_absolute(path)

@@ -20,7 +20,8 @@ Godot 4.7 的类吸血鬼幸存者项目。画面是 640×360 的星露谷式像
 | --- | --- |
 | `art-studio/` | 美术工作室（Node + Vite + TS），只在开发时用，见其 README |
 | `assets/generated/` | 工作室导出的序列帧、动效曲线、音效、色带（不要手改） |
-| `assets/overrides/` | **美术手绘覆盖**：放入与 `generated/` 同路径的文件即替换，无需改代码 |
+| `assets/overrides/` | **素材替换**：放入以素材 id 命名的图片、帧文件夹或音频即替换，规则见其中的 `说明.md` |
+| `assets/素材清单.md` | 全部素材 id、中文用途、尺寸与动画片段（工具生成） |
 | `assets/manifest.json` | 导出清单：素材 id → 文件、尺寸、动画片段 |
 | `assets/fonts/` | Fusion Pixel 12px 中文像素字体（OFL，许可证在 licenses/） |
 | `content/` | 纯数据（.tres，可在 Godot 检查器中编辑）：武器、被动、角色、敌人、关卡、拾取物、局外强化、CG |
@@ -35,11 +36,25 @@ Godot 4.7 的类吸血鬼幸存者项目。画面是 640×360 的星露谷式像
 | `scripts/ui/` | HUD、升级、宝箱演出、暂停、结算、标题、选角选关、商店、图鉴、设置、MotionPlayer |
 | `scripts/narrative/` | 对话解析 / 运行 / 界面、CG 登记与画廊（**已内置，暂未接入玩法**） |
 | `shaders/` | `sprite_batch`（受击闪白、冻结、溶解、首领描边）、`player`、`weapons/*`、`screen/vignette`、`ui/*`、`fx/*` |
-| `tools/` | 自动试玩 `autoplay.gd`、单元测试 `tests/run_tests.gd`、对话冒烟测试 |
+| `tools/` | 素材替换工具 `assets_tool.gd`、自动试玩 `autoplay.gd`、单元测试 `tests/run_tests.gd`、对话冒烟测试 |
 
 ## 常见改动
 
-- **换图 / 换音效**：把同名文件放进 `assets/overrides/`（例如 `assets/overrides/sheets/actor.enemy.bat.png`）。帧数或尺寸也要变时，在 `assets/overrides/manifest.json` 里写同 id 的条目覆盖清单。
+- **换图 / 换音效**：在 [素材清单](assets/素材清单.md) 里找到素材 id，把文件或文件夹以这个 id 命名后放进 `assets/overrides/`。
+  - 可以是一张图、一个逐帧文件夹（`行走_0.png`、`行走_1.png`……），也可以是 `.wav`、`.ogg`、`.mp3`。
+  - 帧数、尺寸都可以变，不用改代码或配置。
+  - 详见 [assets/overrides/说明.md](assets/overrides/说明.md)。
+  - 先拆出原图再改最省事：
+
+    ```bash
+    /Applications/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tools/assets_tool.gd -- unpack actor.enemy.bat
+    ```
+
+  - 放好后用 `check` 命令检查：
+
+    ```bash
+    /Applications/Godot.app/Contents/MacOS/Godot --headless --path . -s res://tools/assets_tool.gd -- check
+    ```
 - **改数值**：在 Godot 里打开 `content/weapons/whip.tres` 等资源直接改；武器升级表是 `levels` 数组。
 - **调手感**：全局参数在 `content/feel.json`；每把武器在检查器的「手感」分组里有消散时长 `fade_out`、命中火花 `hit_fx`、命中音效 `hit_sfx`、命中屏震 `hit_shake`。偏小的投射物可在 `params` 里加 `visual_scale` 放大外观。
 - **绘制层级**：世界内节点的 z 统一取自 `scripts/render/layers.gd`。贴地的特效（火池、光环）挂到 `game.ground_fx`，否则会盖住怪物。

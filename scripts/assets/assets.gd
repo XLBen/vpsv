@@ -1,14 +1,15 @@
 extends Node
 ## 素材解析器（自动加载 Assets）。游戏代码只用逻辑 id，这里负责找到文件：
-##   1. assets/overrides/ 下同路径文件（美术手绘覆盖）优先；
+##   1. 替换目录（assets/overrides/、user://overrides/）里以素材 id 命名的文件或帧文件夹优先，
+##      规则见 scripts/assets/overrides.gd 与 assets/overrides/说明.md；
 ##   2. 否则用 assets/generated/ 下工作室导出的文件；
 ##   3. 找不到时返回醒目的占位图，并只警告一次。
-## assets/overrides/manifest.json（可选）中的条目会覆盖导出清单里的同 id 条目，
-## 用于手绘素材改变帧数或尺寸的情况。
+## assets/overrides/manifest.json（可选，旧方式）中的条目会覆盖导出清单里的同 id 条目。
 
 const MANIFEST := "res://assets/manifest.json"
 const OVERRIDE_MANIFEST := "res://assets/overrides/manifest.json"
 const FONT_PATH := "res://assets/fonts/fusion-pixel-12px.woff2"
+const Overrides := preload("res://scripts/assets/overrides.gd")
 
 var manifest := {}
 var palette := {}
@@ -19,6 +20,9 @@ var _sounds := {}
 var _motions := {}
 var _warned := {}
 var _missing: Texture2D
+var override_dirs: Array = Overrides.DIRS
+var overrides := {}               # 素材 id → 替换品位置（见 Overrides.scan）
+var override_problems := {}       # 素材 id → 整理替换品时发现的问题（检查工具显示）
 
 
 class SheetInfo:
@@ -30,6 +34,7 @@ class SheetInfo:
 	var clips := {}       # name -> {row, frames, loop, fps}
 	var cols := 1
 	var rows := 1
+	var replaced := false           # 来自替换目录
 
 	func clip(name: String) -> Dictionary:
 		if clips.has(name):
@@ -50,6 +55,27 @@ class SheetInfo:
 
 func _ready() -> void:
 	_load_manifest()
+	_scan_overrides()
+	_load_font()
+
+
+func _scan_overrides() -> void:
+	overrides = Overrides.scan(manifest, override_dirs)
+	override_problems.clear()
+	var n := overrides.size() - 1 - (1 if overrides.has("_font") else 0)
+	if n > 0:
+		print("素材替换：%d 个素材使用替换品" % n)
+
+
+## 重新扫描替换目录并清空缓存（测试、调试用；已经创建的节点不会自动换图）。
+func reload() -> void:
+	_tex.clear()
+	_frames.clear()
+	_sounds.clear()
+	_motions.clear()
+	_warned.clear()
+	_load_manifest()
+	_scan_overrides()
 	_load_font()
 
 
@@ -73,6 +99,11 @@ func _read_json(path: String) -> Variant:
 
 
 func _load_font() -> void:
+	if overrides.has("_font"):
+		var of := Overrides.load_font(overrides._font)
+		if of:
+			font = of
+			return
 	var f := load(FONT_PATH) as FontFile
 	if f == null:
 		var sf := SystemFont.new()
@@ -135,7 +166,11 @@ func texture(id: String) -> Texture2D:
 		return _tex[id]
 	var e := entry(id)
 	var t: Texture2D = null
-	if not e.is_empty():
+	if overrides.has(id) and overrides[id].has("file"):
+		var img := Overrides.load_image(overrides[id].file)
+		if img:
+			t = ImageTexture.create_from_image(img)
+	if t == null and not e.is_empty():
 		t = _load_texture(resolve(e.file))
 	if t == null:
 		_warn(id, "无文件")
@@ -157,6 +192,17 @@ func sheet(id: String) -> SheetInfo:
 		s.pivot = Vector2i(4, 7)
 		s.clips = {"idle": {"row": 0, "frames": 1, "loop": true, "fps": 1.0}}
 	else:
+		if overrides.has(id):
+			# 替换品：整理成与导出图集相同的结构（帧尺寸、片段、轴心可能变化）
+			var built: Array = Overrides.build_sheet(id, e, overrides[id])
+			if not built[2].is_empty():
+				override_problems[id] = built[2]
+				for msg in built[2]:
+					push_warning("素材替换 %s：%s" % [id, msg])
+			if built[1] != null:
+				e = built[0]
+				_tex[id] = ImageTexture.create_from_image(built[1])
+				s.replaced = true
 		s.texture = texture(id)
 		s.size = Vector2i(e.size[0], e.size[1])
 		s.pivot = Vector2i(e.pivot[0], e.pivot[1])
@@ -216,7 +262,9 @@ func sound(id: String) -> AudioStream:
 		return _sounds[id]
 	var e := entry(id)
 	var s: AudioStream = null
-	if not e.is_empty():
+	if overrides.has(id) and overrides[id].has("file"):
+		s = Overrides.load_audio(overrides[id].file)
+	if s == null and not e.is_empty():
 		var p := resolve(e.file)
 		if ResourceLoader.exists(p):
 			s = load(p)
@@ -234,7 +282,9 @@ func motion(id: String) -> Dictionary:
 		return _motions[id]
 	var e := entry(id)
 	var data = null
-	if not e.is_empty():
+	if overrides.has(id) and overrides[id].has("file"):
+		data = _read_json(overrides[id].file)
+	if data == null and not e.is_empty():
 		data = _read_json(resolve(e.file))
 	if not (data is Dictionary):
 		_warn(id, "无动效")
